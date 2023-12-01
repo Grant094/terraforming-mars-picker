@@ -5,6 +5,7 @@ function randomize() {
     // * "selected" has been avoided because it is seen as too ambiguous
     let expansionsChecked = document.querySelectorAll('input[name="expansion"]:checked');
     let expansionsChosen = [];
+    let resultsDiv = document.getElementById('results');
     
     for (let expansion of expansionsChecked) {
         if (Math.random() > 0.5) {
@@ -14,17 +15,31 @@ function randomize() {
     
     let chosenExpansionsElement = document.getElementById("chosen_expansions");
     chosenExpansionsElement.innerHTML = ''; // clear out previously chosen expansions
-    for (let expansion of expansionsChosen) {
-        let child = document.createElement('li');
-        child.innerHTML = expansion.value;
-        chosenExpansionsElement.appendChild(child);
+
+    // clear out message about the base game if it is there
+    let baseGameOnlyElement = document.getElementById('base_game_only');
+    if (baseGameOnlyElement) {
+        resultsDiv.removeChild(baseGameOnlyElement);
+    }
+    
+    if (expansionsChosen.length === 0) {
+        let child = document.createElement('p');
+        child.setAttribute('id', 'base_game_only');
+        child.innerHTML = "Play with just the base game!";
+        resultsDiv.appendChild(child);
+    } else {
+        for (let expansion of expansionsChosen) {
+            let child = document.createElement('li');
+            child.innerHTML = expansion.value;
+            chosenExpansionsElement.appendChild(child);
+        }
     }
     
     let mapsChecked = document.querySelectorAll('input[name="map"]:checked');
     let mapChosen = mapsChecked[Math.floor(Math.random() * mapsChecked.length)];
     document.getElementById('chosen_map').innerHTML = "Map: " + mapChosen.value;
 
-    document.getElementById('results').style.display = 'inline';
+    resultsDiv.style.display = 'inline';
 };
 
 function showOrHideMaps(ele) {
