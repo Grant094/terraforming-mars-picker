@@ -39,6 +39,8 @@ function randomize() {
     let mapChosen = mapsChecked[Math.floor(Math.random() * mapsChecked.length)];
     document.getElementById('chosen_map').innerHTML = "Map: " + mapChosen.value;
 
+    
+
     resultsDiv.style.display = 'inline';
 };
 
@@ -57,6 +59,17 @@ function showOrHideMaps(ele) {
     }
 };
 
+function showOrHideColonies() {
+    let coloniesDiv = document.getElementById('colonies_div');
+    let coloniesElement = document.getElementById('Colonies');
+
+    if (coloniesElement.checked) {
+        coloniesDiv.style.display = 'inline';
+    } else {
+        coloniesDiv.style.display = 'none';
+    }
+};
+
 function invertCheckedExpansions() {
     let expansions = document.querySelectorAll('input[name="expansion"]');
     for (const expansion of expansions) {
@@ -68,4 +81,6 @@ function invertCheckedExpansions() {
         mapsExpansion.checked = !(mapsExpansion.checked);
         showOrHideMaps(mapsExpansion); // needed since toggling checkbox this way does not trigger inline onchange event
     }
+
+    showOrHideColonies(); // needed since toggling checkbox this way does not trigger inline onchange event
 };

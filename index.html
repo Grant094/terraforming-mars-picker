@@ -7,6 +7,10 @@
         <h1>Terraforming Mars Randomizer</h1>
         <h2>Randomly select which components to play with!</h2>
         <form>
+            <label for="players"></label>
+            <input type="number" id="players" name="players" min="1" max="5" value="2" />
+            <br />
+            <br />
             <button type="button" onclick="invertCheckedExpansions()">Invert</button>
             <input type="checkbox" id="Corporate Era" name="expansion" value="Corporate Era" />
             <label for="Corporate Era">Corporate Era</label>
@@ -14,7 +18,7 @@
             <label for="Prelude">Prelude</label>
             <input type="checkbox" id="Venus Next" name="expansion" value="Venus Next" />
             <label for="Venus Next">Venus Next</label>
-            <input type="checkbox" id="Colonies" name="expansion" value="Colonies" />
+            <input type="checkbox" id="Colonies" name="expansion" value="Colonies" onchange="showOrHideColonies()" />
             <label for="Colonies">Colonies</label>
             <input type="checkbox" id="Turmoil" name="expansion" value="Turmoil" />
             <label for="Turmoil">Turmoil</label>
@@ -33,6 +37,33 @@
                 <label for="Elysium">Elysium</label>
             </form>
         </div>
+        <div id="colonies_div" style="display: none;">
+            <h3>Colonies:</h3>
+            <form>
+                <input type="checkbox" id="Callisto" name="colony" value="Callisto" checked />
+                <label for="Callisto">Callisto</label>
+                <input type="checkbox" id="Ceres" name="colony" value="Ceres" checked />
+                <label for="Ceres">Ceres</label>
+                <input type="checkbox" id="Enceladus" name="colony" value="Enceladus" checked />
+                <label for="Enceladus">Enceladus</label>
+                <input type="checkbox" id="Europa" name="colony" value="Europa" checked />
+                <label for="Europa">Europa</label>
+                <input type="checkbox" id="Ganymede" name="colony" value="Ganymede" checked />
+                <label for="Ganymede">Ganymede</label>
+                <input type="checkbox" id="Io" name="colony" value="Io" checked />
+                <label for="Io">Io</label>
+                <input type="checkbox" id="Luna" name="colony" value="Luna" checked />
+                <label for="Luna">Luna</label>
+                <input type="checkbox" id="Miranda" name="colony" value="Miranda" checked />
+                <label for="Miranda">Miranda</label>
+                <input type="checkbox" id="Pluto" name="colony" value="Pluto" checked />
+                <label for="Pluto">Pluto</label>
+                <input type="checkbox" id="Titan" name="colony" value="Titan" checked />
+                <label for="Titan">Titan</label>
+                <input type="checkbox" id="Triton" name="colony" value="Triton" checked />
+                <label for="Triton">Triton</label>
+            </form>
+        </div>
         <br />
         <input type="button" value="Randomize!" onclick="randomize()"/>
         <br />
@@ -40,6 +71,7 @@
             <h2>Results:</h2>
             <h3 id="chosen_map"></h3>
             <ul id="chosen_expansions"></ul>
+            <ul id="chosen_colonies"></ul>
         </div>
     </body>
 </html>
