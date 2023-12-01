@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="./main.js"></script>
+    </head>
+    <body>
+        <h1>Terraforming Mars Randomizer</h1>
+        <h2>Randomly select which components to play with!</h2>
+        <form>
+            <input type="checkbox" id="Prelude" name="expansion" value="Prelude" />
+            <label for="Prelude">Prelude</label>
+            <input type="checkbox" id="Venus Next" name="expansion" value="Venus Next" />
+            <label for="Venus Next">Venus Next</label>
+            <input type="checkbox" id="Colonies" name="expansion" value="Colonies" />
+            <label for="Colonies">Colonies</label>
+            <input type="checkbox" id="Turmoil" name="expansion" value="Turmoil" />
+            <label for="Turmoil">Turmoil</label>
+        </form>
+        <br />
+        <input type="button" value="Randomize!" onclick="randomize()"/>
+        <br />
+        <h2>You will play with:</h2>
+        <ul id="chosen_expansions"></ul>
+    </body>
+</html>
