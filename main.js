@@ -21,7 +21,7 @@ function randomize() {
     }
     
     let mapsChecked = document.querySelectorAll('input[name="map"]:checked');
-    let mapChosen = mapsChecked[Math.floor(Math.random() * 3)]
+    let mapChosen = mapsChecked[Math.floor(Math.random() * mapsChecked.length)];
     document.getElementById('chosen_map').innerHTML = "Map: " + mapChosen.value;
 
     document.getElementById('results').style.display = 'inline';
