@@ -19,4 +19,14 @@ function randomize() {
         child.innerHTML = expansion.value;
         chosenExpansionsElement.appendChild(child);
     }
-}
+};
+
+function showOrHideMaps(e) {
+    let mapsDiv = document.getElementById('maps_div');
+
+    if (document.querySelectorAll('input[name="maps_expansion"]:checked').length > 0) {
+        mapsDiv.style.display = 'inline';
+    } else {
+        mapsDiv.style.display = 'none';
+    }
+};
