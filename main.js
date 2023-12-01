@@ -41,3 +41,16 @@ function showOrHideMaps(ele) {
         mapsDiv.style.display = 'none';
     }
 };
+
+function invertCheckedExpansions() {
+    let expansions = document.querySelectorAll('input[name="expansion"]');
+    for (const expansion of expansions) {
+        expansion.checked = !(expansion.checked);
+    }
+
+    let mapsExpansions = document.querySelectorAll('input[name="maps_expansion"]');
+    for (const mapsExpansion of mapsExpansions) {
+        mapsExpansion.checked = !(mapsExpansion.checked);
+        showOrHideMaps(mapsExpansion); // needed since toggling checkbox this way does not trigger inline onchange event
+    }
+};
