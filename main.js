@@ -39,7 +39,9 @@ function randomize() {
     let mapChosen = mapsChecked[Math.floor(Math.random() * mapsChecked.length)];
     document.getElementById('chosen_map').innerHTML = "Map: " + mapChosen.value;
 
-    
+    let chosenColoniesElement = document.getElementById('chosen_colonies');
+    chosenColoniesElement.innerHTML = ""; // clear-out previously chosen colonies
+    let players = document.getElementById('players').value;
 
     resultsDiv.style.display = 'inline';
 };
@@ -83,4 +85,8 @@ function invertCheckedExpansions() {
     }
 
     showOrHideColonies(); // needed since toggling checkbox this way does not trigger inline onchange event
+};
+
+function chooseColony(colonies) {
+
 };
