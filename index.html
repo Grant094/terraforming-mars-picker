@@ -15,18 +15,18 @@
             <label for="Colonies">Colonies</label>
             <input type="checkbox" id="Turmoil" name="expansion" value="Turmoil" />
             <label for="Turmoil">Turmoil</label>
-            <input type="checkbox" id="Hellas & Elysium" name="maps_expansion" value="Hellas & Elysium" onchange="showOrHideMaps()" />
+            <input type="checkbox" id="Hellas & Elysium" name="maps_expansion" value="Hellas & Elysium" onchange="showOrHideMaps(this)" />
             <label for="Hellas & Elysium">Hellas & Elysium</label>
         </form>
         <br />
         <div id="maps_div" style="display: none;">
             <h3>Which Maps Do You Want?</h3>
             <form>
-                <input type="checkbox" id="Tharsis" name="map" value="Tharsis" checked/>
+                <input type="checkbox" id="Tharsis" name="map" class="Tharsis" value="Tharsis" checked/>
                 <label for="Tharsis">Tharsis</label>
-                <input type="checkbox" id="Hellas" name="map" value="Hellas" />
+                <input type="checkbox" id="Hellas" name="map" class="Hellas & Elysium" value="Hellas" />
                 <label for="Hellas">Hellas</label>
-                <input type="checkbox" id="Elysium" name="map" value="Elysium" />
+                <input type="checkbox" id="Elysium" name="map" class="Hellas & Elysium" value="Elysium" />
                 <label for="Elysium">Elysium</label>
             </form>
         </div>

@@ -21,8 +21,13 @@ function randomize() {
     }
 };
 
-function showOrHideMaps(e) {
+function showOrHideMaps(ele) {
     let mapsDiv = document.getElementById('maps_div');
+    let expansionMaps = document.getElementsByClassName(ele.value);
+
+    for (const map of expansionMaps) {
+        map.checked = ele.checked;
+    }
 
     if (document.querySelectorAll('input[name="maps_expansion"]:checked').length > 0) {
         mapsDiv.style.display = 'inline';
