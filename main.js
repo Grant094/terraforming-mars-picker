@@ -1,6 +1,6 @@
 function randomize() {
     // NOTE on terminology: 
-    // * "checked" means expansions selected by the user
+    // * "checked" means checkboxes checked by the user
     // * "picked" and "chosen" mean expansions picked or chosen by the web app
     // * "selected" has been avoided because it is seen as too ambiguous
     let expansionsChecked = document.querySelectorAll('input[name="expansion"]:checked');
