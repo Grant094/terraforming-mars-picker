@@ -4,7 +4,7 @@ function randomize() {
     // * "picked" and "chosen" mean expansions picked or chosen by the web app
     // * "selected" has been avoided because it is seen as too ambiguous
     let expansionsChecked = document.querySelectorAll('input[name="expansion"]:checked');
-    let expansionsPicked = [];
+    let expansionsPicked = new Set();
     const numOfExpansionsByPlayerCount = {
         1: 4,
         2: 5,
@@ -14,11 +14,13 @@ function randomize() {
     };
     let resultsDiv = document.getElementById('results');
     let expansionsDiv = document.getElementById('expansions_div');
+    let minExpansions = document.getElementById('min_expansions').value;
+    let maxExpansions = document.getElementById('max_expansions').value;
+    let numExpansionsToUse = Math.floor(Math.random() * (maxExpansions - minExpansions) + minExpansions);
+    console.log(`Min: ${minExpansions}, Max: ${maxExpansions}, toUse: ${numExpansionsToUse}`);
 
-    for (let expansion of expansionsChecked) {
-        if (Math.random() > 0.5) {
-            expansionsPicked.push(expansion);
-        }
+    while (expansionsPicked.size < numExpansionsToUse) {
+        expansionsPicked.add(chooseExpansion(expansionsChecked));
     }
     
     let pickedExpansionsElement = document.getElementById("picked_expansions");
@@ -32,7 +34,7 @@ function randomize() {
         expansionsDiv.removeChild(baseGameOnlyElement);
     }
     
-    if (expansionsPicked.length === 0) {
+    if (expansionsPicked.size === 0) {
         let child = document.createElement('p');
         child.setAttribute('id', 'base_game_only');
         child.innerHTML = "Play with just the base game!";
@@ -124,3 +126,7 @@ function invertCheckedExpansions() {
 function chooseColony(colonies) {
     return colonies[Math.floor(Math.random() * colonies.length)];
 };
+
+function chooseExpansion(expansions) {
+    return expansions[Math.floor(Math.random() * expansions.length)];
+}

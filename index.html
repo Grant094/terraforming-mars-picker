@@ -24,6 +24,12 @@
             <label for="Turmoil">Turmoil</label>
             <input type="checkbox" id="Hellas & Elysium" name="maps_expansion" value="Hellas & Elysium" onchange="showOrHideMaps(this)" checked />
             <label for="Hellas & Elysium">Hellas & Elysium</label>
+            <br />
+            <br />
+            <label for="min_expansions">Min:</label>
+            <input type="number" id="min_expansions" name="min_expansions" min="0" max="6" value="0" />
+            <label for="max_expansions">Max:</label>
+            <input type="number" id="max_expansions" name="max_expansions" min="0" max="6" value="6" />
         </form>
         <br />
         <div id="maps_div">
