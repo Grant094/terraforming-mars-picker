@@ -13,6 +13,7 @@ function randomize() {
         5: 7
     };
     let resultsDiv = document.getElementById('results');
+    let expansionsDiv = document.getElementById('expansions_div');
 
     for (let expansion of expansionsChecked) {
         if (Math.random() > 0.5) {
@@ -28,14 +29,14 @@ function randomize() {
     // clear out message about the base game if it is there
     let baseGameOnlyElement = document.getElementById('base_game_only');
     if (baseGameOnlyElement) {
-        resultsDiv.removeChild(baseGameOnlyElement);
+        expansionsDiv.removeChild(baseGameOnlyElement);
     }
     
     if (expansionsChosen.length === 0) {
         let child = document.createElement('p');
         child.setAttribute('id', 'base_game_only');
         child.innerHTML = "Play with just the base game!";
-        resultsDiv.appendChild(child);
+        expansionsDiv.appendChild(child);
     } else {
         for (let expansion of expansionsChosen) {
             let child = document.createElement('li');
