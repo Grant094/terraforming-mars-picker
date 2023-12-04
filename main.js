@@ -5,8 +5,15 @@ function randomize() {
     // * "selected" has been avoided because it is seen as too ambiguous
     let expansionsChecked = document.querySelectorAll('input[name="expansion"]:checked');
     let expansionsChosen = [];
+    const numOfExpansionsByPlayerCount = {
+        1: 4,
+        2: 5,
+        3: 5,
+        4: 6,
+        5: 7
+    };
     let resultsDiv = document.getElementById('results');
-    
+
     for (let expansion of expansionsChecked) {
         if (Math.random() > 0.5) {
             expansionsChosen.push(expansion);
@@ -42,6 +49,22 @@ function randomize() {
     let chosenColoniesElement = document.getElementById('chosen_colonies');
     chosenColoniesElement.innerHTML = ""; // clear-out previously chosen colonies
     let players = document.getElementById('players').value;
+    let numOfExpansionsToUse = numOfExpansionsByPlayerCount[players];
+    let coloniesChecked = document.querySelectorAll('input[name="colony"]:checked');
+    let coloniesChosen = new Set();
+    
+    while (coloniesChosen.size < numOfExpansionsToUse) {
+        coloniesChosen.add(chooseColony(coloniesChecked));
+    }
+
+    for (let colony of coloniesChosen) {
+        let child = document.createElement('li');
+        child.innerHTML = colony.value;
+        chosenColoniesElement.appendChild(child);
+    }
+
+    let coloniesResultsDiv = document.getElementById('colonies_results');
+    coloniesResultsDiv.style.display = 'inline';
 
     resultsDiv.style.display = 'inline';
 };
@@ -88,5 +111,5 @@ function invertCheckedExpansions() {
 };
 
 function chooseColony(colonies) {
-
+    return colonies[Math.floor(Math.random() * colonies.length)];
 };
