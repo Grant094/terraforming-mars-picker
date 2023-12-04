@@ -11,25 +11,23 @@
             <input type="number" id="players" name="players" min="1" max="5" value="2" />
             <br />
             <br />
-            <button type="button" onclick="invertCheckedExpansions()">Invert</button>
-            <input type="checkbox" id="Corporate Era" name="expansion" value="Corporate Era" checked />
+            <button type="button" onclick="invertCheckedComponents()">Invert</button>
+            <input type="checkbox" id="Corporate Era" name="component"value="Corporate Era" checked />
             <label for="Corporate Era">Corporate Era</label>
-            <input type="checkbox" id="Prelude" name="expansion" value="Prelude" checked />
+            <input type="checkbox" id="Prelude" name="component"value="Prelude" checked />
             <label for="Prelude">Prelude</label>
-            <input type="checkbox" id="Venus Next" name="expansion" value="Venus Next" checked />
+            <input type="checkbox" id="Venus Next" name="component"value="Venus Next" checked />
             <label for="Venus Next">Venus Next</label>
-            <input type="checkbox" id="Colonies" name="expansion" value="Colonies" onchange="showOrHideColonies()" checked />
+            <input type="checkbox" id="Colonies" name="component"value="Colonies" onchange="showOrHideColonies()" checked />
             <label for="Colonies">Colonies</label>
-            <input type="checkbox" id="Turmoil" name="expansion" value="Turmoil" checked />
+            <input type="checkbox" id="Turmoil" name="component"value="Turmoil" checked />
             <label for="Turmoil">Turmoil</label>
-            <input type="checkbox" id="Hellas & Elysium" name="maps_expansion" value="Hellas & Elysium" onchange="showOrHideMaps(this)" checked />
-            <label for="Hellas & Elysium">Hellas & Elysium</label>
             <br />
             <br />
-            <label for="min_expansions">Min:</label>
-            <input type="number" id="min_expansions" name="min_expansions" min="0" max="5" value="0" onchange="alignMinAndMax()" />
-            <label for="max_expansions">Max:</label>
-            <input type="number" id="max_expansions" name="max_expansions" min="0" max="5" value="5" onchange="alignMinAndMax()" />
+            <label for="min_components">Min:</label>
+            <input type="number" id="min_components" name="min_components" min="0" max="5" value="0" onchange="alignMinAndMax()" />
+            <label for="max_components">Max:</label>
+            <input type="number" id="max_components" name="max_components" min="0" max="5" value="5" onchange="alignMinAndMax()" />
         </form>
         <br />
         <div id="maps_div">
@@ -76,9 +74,9 @@
         <div id="results" style="display: none;">
             <h2>Results:</h2>
             <h3 id="picked_map"></h3>
-            <div id="expansions_div">
-                <h3 id="expansions_heading">Expansions:</h3>
-                <ul id="picked_expansions"></ul>
+            <div id="components_div">
+                <h3 id="components_heading">Components:</h3>
+                <ul id="picked_components"></ul>
             </div>
             <div id="colonies_results" style="display: none;">
                 <h3 id="colonies_heading">Colonies:</h3>

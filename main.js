@@ -1,11 +1,11 @@
 function randomize() {
     // NOTE on terminology: 
     // * "checked" means checkboxes checked by the user
-    // * "picked" and "chosen" mean expansions picked or chosen by the web app
+    // * "picked" and "chosen" mean components picked or chosen by the web app
     // * "selected" has been avoided because it is seen as too ambiguous
-    let expansionsChecked = document.querySelectorAll('input[name="expansion"]:checked');
-    let expansionsPicked = new Set();
-    const numOfExpansionsByPlayerCount = {
+    let componentsChecked = document.querySelectorAll('input[name="component"]:checked');
+    let componentsPicked = new Set();
+    const numOfColoniesByPlayerCount = {
         1: 4,
         2: 5,
         3: 5,
@@ -13,42 +13,42 @@ function randomize() {
         5: 7
     };
 
-    let pickedExpansionsElement = document.getElementById("picked_expansions");
-    pickedExpansionsElement.innerHTML = ''; // clear out previously picked expansions
+    let pickedComponentsElement = document.getElementById("picked_components");
+    pickedComponentsElement.innerHTML = ''; // clear out previously picked components
 
     let pickedColoniesElement = document.getElementById('picked_colonies');
     pickedColoniesElement.innerHTML = ""; // clear-out previously picked colonies
 
     let resultsDiv = document.getElementById('results');
-    let expansionsDiv = document.getElementById('expansions_div');
-    let minExpansions = document.getElementById('min_expansions').value;
-    let maxExpansions = document.getElementById('max_expansions').value;
-    let numExpansionsToUse = Math.floor(Math.random() * (maxExpansions - minExpansions + 1)) + Number(minExpansions);
+    let componentsDiv = document.getElementById('components_div');
+    let minComponents = document.getElementById('min_components').value;
+    let maxComponents = document.getElementById('max_components').value;
+    let numComponentsToUse = Math.floor(Math.random() * (maxComponents - minComponents + 1)) + Number(minComponents);
 
-    while (expansionsPicked.size < numExpansionsToUse) {
-        expansionsPicked.add(pick(expansionsChecked));
+    while (componentsPicked.size < numComponentsToUse) {
+        componentsPicked.add(pick(componentsChecked));
     }
     
     // clear out message about the base game if it is there
     let baseGameOnlyElement = document.getElementById('base_game_only');
     if (baseGameOnlyElement) {
-        expansionsDiv.removeChild(baseGameOnlyElement);
+        componentsDiv.removeChild(baseGameOnlyElement);
     }
     
-    if (expansionsPicked.size === 0) {
+    if (componentsPicked.size === 0) {
         let child = document.createElement('p');
         child.setAttribute('id', 'base_game_only');
         child.innerHTML = "Play with just the base game!";
-        expansionsDiv.appendChild(child);
+        componentsDiv.appendChild(child);
     } else {
-        listPickedItems(expansionsPicked, pickedExpansionsElement);
+        listPickedItems(componentsPicked, pickedComponentsElement);
     }
 
-    // if the Colonies expansion was picked, pick which colonies to play with
-    for (const expansion of expansionsPicked) {
-        if (expansion.value === "Colonies") {
+    // if the Colonies component was picked, pick which colonies to play with
+    for (const component of componentsPicked) {
+        if (component.value === "Colonies") {
             let players = document.getElementById('players').value;
-            let numColoniesToPick = numOfExpansionsByPlayerCount[players];
+            let numColoniesToPick = numOfColoniesByPlayerCount[players];
             let coloniesChecked = document.querySelectorAll('input[name="colony"]:checked');
             let coloniesPicked = new Set();
             
@@ -75,20 +75,20 @@ function randomize() {
     resultsDiv.style.display = 'inline';
 };
 
-function showOrHideMaps(ele) {
-    let mapsDiv = document.getElementById('maps_div');
-    let expansionMaps = document.getElementsByClassName(ele.value);
+// function showOrHideMaps(ele) {
+//     let mapsDiv = document.getElementById('maps_div');
+//     let componentMaps = document.getElementsByClassName(ele.value);
 
-    for (const map of expansionMaps) {
-        map.checked = ele.checked;
-    }
+//     for (const map of componentMaps) {
+//         map.checked = ele.checked;
+//     }
 
-    if (document.querySelectorAll('input[name="maps_expansion"]:checked').length > 0) {
-        mapsDiv.style.display = 'inline';
-    } else {
-        mapsDiv.style.display = 'none';
-    }
-};
+//     if (document.querySelectorAll('input[name="maps_component"]:checked').length > 0) {
+//         mapsDiv.style.display = 'inline';
+//     } else {
+//         mapsDiv.style.display = 'none';
+//     }
+// };
 
 function showOrHideColonies() {
     let coloniesDiv = document.getElementById('colonies_div');
@@ -101,27 +101,27 @@ function showOrHideColonies() {
     }
 };
 
-function invertCheckedExpansions() {
-    let expansions = document.querySelectorAll('input[name="expansion"]');
-    for (const expansion of expansions) {
-        expansion.checked = !(expansion.checked);
+function invertCheckedComponents() {
+    let components = document.querySelectorAll('input[name="component"]');
+    for (const component of components) {
+        component.checked = !(component.checked);
     }
 
-    let mapsExpansions = document.querySelectorAll('input[name="maps_expansion"]');
-    for (const mapsExpansion of mapsExpansions) {
-        mapsExpansion.checked = !(mapsExpansion.checked);
-        showOrHideMaps(mapsExpansion); // needed since toggling checkbox this way does not trigger inline onchange event
-    }
+    // let mapsComponents = document.querySelectorAll('input[name="maps_component"]');
+    // for (const mapsComponent of mapsComponents) {
+    //     mapsComponent.checked = !(mapsComponent.checked);
+    //     showOrHideMaps(mapsComponent); // needed since toggling checkbox this way does not trigger inline onchange event
+    // }
 
     showOrHideColonies(); // needed since toggling checkbox this way does not trigger inline onchange event
 };
 
 function alignMinAndMax() {
-    let minExpansionsElement = document.getElementById('min_expansions');
-    let maxExpansionsElement = document.getElementById('max_expansions');
+    let minComponentsElement = document.getElementById('min_components');
+    let maxComponentsElement = document.getElementById('max_components');
 
-    minExpansionsElement.setAttribute('max', maxExpansionsElement.value);
-    maxExpansionsElement.setAttribute('min', minExpansionsElement.value);
+    minComponentsElement.setAttribute('max', maxComponentsElement.value);
+    maxComponentsElement.setAttribute('min', minComponentsElement.value);
 };
 
 function pick(pickFrom) {
