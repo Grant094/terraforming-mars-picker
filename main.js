@@ -44,7 +44,7 @@ function randomize() {
         listPickedItems(expansionsPicked, pickedExpansionsElement);
     }
 
-    // if the Colonies expansion was picked, choose which colonies to play with
+    // if the Colonies expansion was picked, pick which colonies to play with
     for (const expansion of expansionsPicked) {
         if (expansion.value === "Colonies") {
             let players = document.getElementById('players').value;
