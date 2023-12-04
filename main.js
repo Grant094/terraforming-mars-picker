@@ -75,21 +75,6 @@ function randomize() {
     resultsDiv.style.display = 'inline';
 };
 
-// function showOrHideMaps(ele) {
-//     let mapsDiv = document.getElementById('maps_div');
-//     let componentMaps = document.getElementsByClassName(ele.value);
-
-//     for (const map of componentMaps) {
-//         map.checked = ele.checked;
-//     }
-
-//     if (document.querySelectorAll('input[name="maps_component"]:checked').length > 0) {
-//         mapsDiv.style.display = 'inline';
-//     } else {
-//         mapsDiv.style.display = 'none';
-//     }
-// };
-
 function showOrHideColonies() {
     let coloniesDiv = document.getElementById('colonies_div');
     let coloniesElement = document.getElementById('Colonies');
@@ -106,12 +91,6 @@ function invertCheckedComponents() {
     for (const component of components) {
         component.checked = !(component.checked);
     }
-
-    // let mapsComponents = document.querySelectorAll('input[name="maps_component"]');
-    // for (const mapsComponent of mapsComponents) {
-    //     mapsComponent.checked = !(mapsComponent.checked);
-    //     showOrHideMaps(mapsComponent); // needed since toggling checkbox this way does not trigger inline onchange event
-    // }
 
     showOrHideColonies(); // needed since toggling checkbox this way does not trigger inline onchange event
 };
