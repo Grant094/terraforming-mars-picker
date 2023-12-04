@@ -130,3 +130,11 @@ function chooseColony(colonies) {
 function chooseExpansion(expansions) {
     return expansions[Math.floor(Math.random() * expansions.length)];
 }
+
+function alignMinAndMax() {
+    let minExpansionsElement = document.getElementById('min_expansions');
+    let maxExpansionsElement = document.getElementById('max_expansions');
+
+    minExpansionsElement.setAttribute('max', maxExpansionsElement.value);
+    maxExpansionsElement.setAttribute('min', minExpansionsElement.value);
+};
