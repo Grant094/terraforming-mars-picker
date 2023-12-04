@@ -4,7 +4,7 @@ function randomize() {
     // * "picked" and "chosen" mean expansions picked or chosen by the web app
     // * "selected" has been avoided because it is seen as too ambiguous
     let expansionsChecked = document.querySelectorAll('input[name="expansion"]:checked');
-    let expansionsChosen = [];
+    let expansionsPicked = [];
     const numOfExpansionsByPlayerCount = {
         1: 4,
         2: 5,
@@ -17,14 +17,14 @@ function randomize() {
 
     for (let expansion of expansionsChecked) {
         if (Math.random() > 0.5) {
-            expansionsChosen.push(expansion);
+            expansionsPicked.push(expansion);
         }
     }
     
-    let chosenExpansionsElement = document.getElementById("chosen_expansions");
-    chosenExpansionsElement.innerHTML = ''; // clear out previously chosen expansions
-    let chosenColoniesElement = document.getElementById('chosen_colonies');
-    chosenColoniesElement.innerHTML = ""; // clear-out previously chosen colonies
+    let pickedExpansionsElement = document.getElementById("picked_expansions");
+    pickedExpansionsElement.innerHTML = ''; // clear out previously picked expansions
+    let pickedColoniesElement = document.getElementById('picked_colonies');
+    pickedColoniesElement.innerHTML = ""; // clear-out previously picked colonies
 
     // clear out message about the base game if it is there
     let baseGameOnlyElement = document.getElementById('base_game_only');
@@ -32,32 +32,32 @@ function randomize() {
         expansionsDiv.removeChild(baseGameOnlyElement);
     }
     
-    if (expansionsChosen.length === 0) {
+    if (expansionsPicked.length === 0) {
         let child = document.createElement('p');
         child.setAttribute('id', 'base_game_only');
         child.innerHTML = "Play with just the base game!";
         expansionsDiv.appendChild(child);
     } else {
-        for (let expansion of expansionsChosen) {
+        for (let expansion of expansionsPicked) {
             let child = document.createElement('li');
             child.innerHTML = expansion.value;
-            chosenExpansionsElement.appendChild(child);
+            pickedExpansionsElement.appendChild(child);
 
-            // if the Colonies expansion was chosen, choose which colonies to play with
+            // if the Colonies expansion was picked, choose which colonies to play with
             if (expansion.value === "Colonies") {
                 let players = document.getElementById('players').value;
                 let numOfExpansionsToUse = numOfExpansionsByPlayerCount[players];
                 let coloniesChecked = document.querySelectorAll('input[name="colony"]:checked');
-                let coloniesChosen = new Set();
+                let coloniesPicked = new Set();
                 
-                while (coloniesChosen.size < numOfExpansionsToUse) {
-                    coloniesChosen.add(chooseColony(coloniesChecked));
+                while (coloniesPicked.size < numOfExpansionsToUse) {
+                    coloniesPicked.add(chooseColony(coloniesChecked));
                 }
         
-                for (let colony of coloniesChosen) {
+                for (let colony of coloniesPicked) {
                     let child = document.createElement('li');
                     child.innerHTML = colony.value;
-                    chosenColoniesElement.appendChild(child);
+                    pickedColoniesElement.appendChild(child);
                 }
         
                 
@@ -66,11 +66,11 @@ function randomize() {
     }
     
     let mapsChecked = document.querySelectorAll('input[name="map"]:checked');
-    let mapChosen = mapsChecked[Math.floor(Math.random() * mapsChecked.length)];
-    document.getElementById('chosen_map').innerHTML = "Map: " + mapChosen.value;
+    let mapPicked = mapsChecked[Math.floor(Math.random() * mapsChecked.length)];
+    document.getElementById('picked_map').innerHTML = "Map: " + mapPicked.value;
 
     let coloniesResultsDiv = document.getElementById('colonies_results');
-    if (chosenColoniesElement.children.length > 0) {
+    if (pickedColoniesElement.children.length > 0) {
         coloniesResultsDiv.style.display = 'inline';
     } else {
         coloniesResultsDiv.style.display = 'none';
