@@ -48,11 +48,11 @@ function randomize() {
     for (const expansion of expansionsPicked) {
         if (expansion.value === "Colonies") {
             let players = document.getElementById('players').value;
-            let numOfExpansionsToUse = numOfExpansionsByPlayerCount[players];
+            let numColoniesToPick = numOfExpansionsByPlayerCount[players];
             let coloniesChecked = document.querySelectorAll('input[name="colony"]:checked');
             let coloniesPicked = new Set();
             
-            while (coloniesPicked.size < numOfExpansionsToUse) {
+            while (coloniesPicked.size < numColoniesToPick) {
                 coloniesPicked.add(pick(coloniesChecked));
             }
     
