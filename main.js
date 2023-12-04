@@ -16,7 +16,8 @@ function randomize() {
     let expansionsDiv = document.getElementById('expansions_div');
     let minExpansions = document.getElementById('min_expansions').value;
     let maxExpansions = document.getElementById('max_expansions').value;
-    let numExpansionsToUse = Math.floor(Math.random() * (maxExpansions - minExpansions) + minExpansions);
+    let numExpansionsToUse = Math.floor(Math.random() * (maxExpansions - minExpansions + 1)) + Number(minExpansions);
+    console.log(`Min, Max, Num :: ${minExpansions}, ${maxExpansions}, ${numExpansionsToUse}`);
 
     while (expansionsPicked.size < numExpansionsToUse) {
         expansionsPicked.add(chooseExpansion(expansionsChecked));
