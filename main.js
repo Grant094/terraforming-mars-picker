@@ -59,8 +59,7 @@ function randomize() {
                     chosenColoniesElement.appendChild(child);
                 }
         
-                let coloniesResultsDiv = document.getElementById('colonies_results');
-                coloniesResultsDiv.style.display = 'inline';
+                
             }
         }
     }
@@ -69,6 +68,14 @@ function randomize() {
     let mapChosen = mapsChecked[Math.floor(Math.random() * mapsChecked.length)];
     document.getElementById('chosen_map').innerHTML = "Map: " + mapChosen.value;
 
+    let coloniesResultsDiv = document.getElementById('colonies_results');
+    if (chosenColoniesElement.children.length > 0) {
+        coloniesResultsDiv.style.display = 'inline';
+    } else {
+        coloniesResultsDiv.style.display = 'none';
+    }
+
+    
     resultsDiv.style.display = 'inline';
 };
 
