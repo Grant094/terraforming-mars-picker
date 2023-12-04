@@ -12,32 +12,32 @@
             <br />
             <br />
             <button type="button" onclick="invertCheckedExpansions()">Invert</button>
-            <input type="checkbox" id="Corporate Era" name="expansion" value="Corporate Era" />
+            <input type="checkbox" id="Corporate Era" name="expansion" value="Corporate Era" checked />
             <label for="Corporate Era">Corporate Era</label>
-            <input type="checkbox" id="Prelude" name="expansion" value="Prelude" />
+            <input type="checkbox" id="Prelude" name="expansion" value="Prelude" checked />
             <label for="Prelude">Prelude</label>
-            <input type="checkbox" id="Venus Next" name="expansion" value="Venus Next" />
+            <input type="checkbox" id="Venus Next" name="expansion" value="Venus Next" checked />
             <label for="Venus Next">Venus Next</label>
-            <input type="checkbox" id="Colonies" name="expansion" value="Colonies" onchange="showOrHideColonies()" />
+            <input type="checkbox" id="Colonies" name="expansion" value="Colonies" onchange="showOrHideColonies()" checked />
             <label for="Colonies">Colonies</label>
-            <input type="checkbox" id="Turmoil" name="expansion" value="Turmoil" />
+            <input type="checkbox" id="Turmoil" name="expansion" value="Turmoil" checked />
             <label for="Turmoil">Turmoil</label>
-            <input type="checkbox" id="Hellas & Elysium" name="maps_expansion" value="Hellas & Elysium" onchange="showOrHideMaps(this)" />
+            <input type="checkbox" id="Hellas & Elysium" name="maps_expansion" value="Hellas & Elysium" onchange="showOrHideMaps(this)" checked />
             <label for="Hellas & Elysium">Hellas & Elysium</label>
         </form>
         <br />
-        <div id="maps_div" style="display: none;">
+        <div id="maps_div">
             <h3>Maps:</h3>
             <form>
-                <input type="checkbox" id="Tharsis" name="map" class="Tharsis" value="Tharsis" checked/>
+                <input type="checkbox" id="Tharsis" name="map" class="Tharsis" value="Tharsis" checked />
                 <label for="Tharsis">Tharsis</label>
-                <input type="checkbox" id="Hellas" name="map" class="Hellas & Elysium" value="Hellas" />
+                <input type="checkbox" id="Hellas" name="map" class="Hellas & Elysium" value="Hellas" checked />
                 <label for="Hellas">Hellas</label>
-                <input type="checkbox" id="Elysium" name="map" class="Hellas & Elysium" value="Elysium" />
+                <input type="checkbox" id="Elysium" name="map" class="Hellas & Elysium" value="Elysium" checked />
                 <label for="Elysium">Elysium</label>
             </form>
         </div>
-        <div id="colonies_div" style="display: none;">
+        <div id="colonies_div">
             <h3>Colonies:</h3>
             <form>
                 <input type="checkbox" id="Callisto" name="colony" value="Callisto" checked />
