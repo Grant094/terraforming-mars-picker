@@ -22,6 +22,8 @@ function randomize() {
     
     let chosenExpansionsElement = document.getElementById("chosen_expansions");
     chosenExpansionsElement.innerHTML = ''; // clear out previously chosen expansions
+    let chosenColoniesElement = document.getElementById('chosen_colonies');
+    chosenColoniesElement.innerHTML = ""; // clear-out previously chosen colonies
 
     // clear out message about the base game if it is there
     let baseGameOnlyElement = document.getElementById('base_game_only');
@@ -39,32 +41,33 @@ function randomize() {
             let child = document.createElement('li');
             child.innerHTML = expansion.value;
             chosenExpansionsElement.appendChild(child);
+
+            // if the Colonies expansion was chosen, choose which colonies to play with
+            if (expansion.value === "Colonies") {
+                let players = document.getElementById('players').value;
+                let numOfExpansionsToUse = numOfExpansionsByPlayerCount[players];
+                let coloniesChecked = document.querySelectorAll('input[name="colony"]:checked');
+                let coloniesChosen = new Set();
+                
+                while (coloniesChosen.size < numOfExpansionsToUse) {
+                    coloniesChosen.add(chooseColony(coloniesChecked));
+                }
+        
+                for (let colony of coloniesChosen) {
+                    let child = document.createElement('li');
+                    child.innerHTML = colony.value;
+                    chosenColoniesElement.appendChild(child);
+                }
+        
+                let coloniesResultsDiv = document.getElementById('colonies_results');
+                coloniesResultsDiv.style.display = 'inline';
+            }
         }
     }
     
     let mapsChecked = document.querySelectorAll('input[name="map"]:checked');
     let mapChosen = mapsChecked[Math.floor(Math.random() * mapsChecked.length)];
     document.getElementById('chosen_map').innerHTML = "Map: " + mapChosen.value;
-
-    let chosenColoniesElement = document.getElementById('chosen_colonies');
-    chosenColoniesElement.innerHTML = ""; // clear-out previously chosen colonies
-    let players = document.getElementById('players').value;
-    let numOfExpansionsToUse = numOfExpansionsByPlayerCount[players];
-    let coloniesChecked = document.querySelectorAll('input[name="colony"]:checked');
-    let coloniesChosen = new Set();
-    
-    while (coloniesChosen.size < numOfExpansionsToUse) {
-        coloniesChosen.add(chooseColony(coloniesChecked));
-    }
-
-    for (let colony of coloniesChosen) {
-        let child = document.createElement('li');
-        child.innerHTML = colony.value;
-        chosenColoniesElement.appendChild(child);
-    }
-
-    let coloniesResultsDiv = document.getElementById('colonies_results');
-    coloniesResultsDiv.style.display = 'inline';
 
     resultsDiv.style.display = 'inline';
 };
