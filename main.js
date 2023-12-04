@@ -20,7 +20,7 @@ function randomize() {
     console.log(`Min, Max, Num :: ${minExpansions}, ${maxExpansions}, ${numExpansionsToUse}`);
 
     while (expansionsPicked.size < numExpansionsToUse) {
-        expansionsPicked.add(chooseExpansion(expansionsChecked));
+        expansionsPicked.add(pick(expansionsChecked));
     }
     
     let pickedExpansionsElement = document.getElementById("picked_expansions");
@@ -53,7 +53,7 @@ function randomize() {
                 let coloniesPicked = new Set();
                 
                 while (coloniesPicked.size < numOfExpansionsToUse) {
-                    coloniesPicked.add(chooseColony(coloniesChecked));
+                    coloniesPicked.add(pick(coloniesChecked));
                 }
         
                 for (let colony of coloniesPicked) {
@@ -123,18 +123,14 @@ function invertCheckedExpansions() {
     showOrHideColonies(); // needed since toggling checkbox this way does not trigger inline onchange event
 };
 
-function chooseColony(colonies) {
-    return colonies[Math.floor(Math.random() * colonies.length)];
-};
-
-function chooseExpansion(expansions) {
-    return expansions[Math.floor(Math.random() * expansions.length)];
-}
-
 function alignMinAndMax() {
     let minExpansionsElement = document.getElementById('min_expansions');
     let maxExpansionsElement = document.getElementById('max_expansions');
 
     minExpansionsElement.setAttribute('max', maxExpansionsElement.value);
     maxExpansionsElement.setAttribute('min', minExpansionsElement.value);
+};
+
+function pick(pickFrom) {
+    return pickFrom[Math.floor(Math.random() * pickFrom.length)];
 };
