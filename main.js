@@ -36,6 +36,7 @@ function randomize() {
     }
     
     if (componentsPicked.size === 0) {
+        document.getElementById('picked_components').style.display = 'none';
         let child = document.createElement('p');
         child.setAttribute('id', 'base_game_only');
         child.innerHTML = "Play with just the base game!";
