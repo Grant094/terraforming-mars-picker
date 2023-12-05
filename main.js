@@ -1,4 +1,4 @@
-function randomize() {
+function pick() {
     // NOTE on terminology: 
     // * "checked" means checkboxes checked by the user
     // * "picked" and "chosen" mean components picked or chosen by the web app
@@ -27,7 +27,7 @@ function randomize() {
     let numComponentsToUse = Math.floor(Math.random() * (maxComponents - minComponents + 1)) + Number(minComponents);
 
     while (componentsPicked.size < numComponentsToUse) {
-        componentsPicked.add(pick(componentsChecked));
+        componentsPicked.add(pickItem(componentsChecked));
     }
     
     // clear out message about the base game if it is there
@@ -56,7 +56,7 @@ function randomize() {
             let coloniesPicked = new Set();
             
             while (coloniesPicked.size < numColoniesToPick) {
-                coloniesPicked.add(pick(coloniesChecked));
+                coloniesPicked.add(pickItem(coloniesChecked));
             }
     
             listPickedItems(coloniesPicked, pickedColoniesElement);
@@ -111,7 +111,7 @@ function alignMinAndMax() {
     maxComponentsElement.setAttribute('min', minComponentsElement.value);
 };
 
-function pick(pickFrom) {
+function pickItem(pickFrom) {
     return pickFrom[Math.floor(Math.random() * pickFrom.length)];
 };
 
