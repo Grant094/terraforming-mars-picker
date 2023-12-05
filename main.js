@@ -3,6 +3,7 @@ function randomize() {
     // * "checked" means checkboxes checked by the user
     // * "picked" and "chosen" mean components picked or chosen by the web app
     // * "selected" has been avoided because it is seen as too ambiguous
+    alignMinAndMax();
     let componentsChecked = document.querySelectorAll('input[name="component"]:checked');
     let componentsPicked = new Set();
     const numOfColoniesByPlayerCount = {
@@ -42,6 +43,7 @@ function randomize() {
         child.innerHTML = "Play with just the base game!";
         componentsDiv.appendChild(child);
     } else {
+        document.getElementById('picked_components').style.display = 'inline';
         listPickedItems(componentsPicked, pickedComponentsElement);
     }
 
@@ -99,6 +101,11 @@ function invertCheckedComponents() {
 function alignMinAndMax() {
     let minComponentsElement = document.getElementById('min_components');
     let maxComponentsElement = document.getElementById('max_components');
+    let componentsChecked = document.querySelectorAll('input[name="component"]:checked');
+
+    maxComponentsElement.setAttribute('max', componentsChecked.length);
+    maxComponentsElement.setAttribute('value', (maxComponentsElement.value > maxComponentsElement.max ? maxComponentsElement.max : maxComponentsElement.value));
+    maxComponentsElement.value = maxComponentsElement.getAttribute('value'); // make sure change in value attribute propagates to the page
 
     minComponentsElement.setAttribute('max', maxComponentsElement.value);
     maxComponentsElement.setAttribute('min', minComponentsElement.value);
