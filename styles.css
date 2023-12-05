@@ -3,10 +3,16 @@ table, th, td {
 }
 
 td {
-    padding: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 ul {
     padding: 5px;
     margin: 5px;
+}
+
+li {
+    padding-left: 3px;
+    margin-left: 10px;
 }
