@@ -20,7 +20,7 @@ function randomize() {
     pickedColoniesElement.innerHTML = ""; // clear-out previously picked colonies
 
     let resultsDiv = document.getElementById('results');
-    let componentsDiv = document.getElementById('components_div');
+    let componentsDiv = document.getElementById('picked_components_td');
     let minComponents = document.getElementById('min_components').value;
     let maxComponents = document.getElementById('max_components').value;
     let numComponentsToUse = Math.floor(Math.random() * (maxComponents - minComponents + 1)) + Number(minComponents);
@@ -62,13 +62,13 @@ function randomize() {
     
     let mapsChecked = document.querySelectorAll('input[name="map"]:checked');
     let mapPicked = mapsChecked[Math.floor(Math.random() * mapsChecked.length)];
-    document.getElementById('picked_map').innerHTML = "Map: " + mapPicked.value;
+    document.getElementById('picked_map_td').innerHTML = mapPicked.value;
 
-    let coloniesResultsDiv = document.getElementById('colonies_results');
+    let pickedColoniesCol = document.getElementById('picked_colonies_col');
     if (pickedColoniesElement.children.length > 0) {
-        coloniesResultsDiv.style.display = 'inline';
+        pickedColoniesCol.style.visibility = 'visible';
     } else {
-        coloniesResultsDiv.style.display = 'none';
+        pickedColoniesCol.style.visibility = 'collapse';
     }
 
     

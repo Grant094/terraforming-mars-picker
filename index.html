@@ -73,7 +73,28 @@
         <br />
         <div id="results" style="display: none;">
             <h2>Results:</h2>
-            <h3 id="picked_map"></h3>
+            <table>
+                <colgroup>
+                    <col id="picked_map_col" />
+                    <col id="picked_components_col" />
+                    <col id="picked_colonies_col" />
+                </colgroup>
+                <tr>
+                    <th>Map</th>
+                    <th>Expansions</th>
+                    <th id="picked_colonies_th">Colonies</th>
+                </tr>
+                <tr>
+                    <td id="picked_map_td"></td>
+                    <td id="picked_components_td">
+                        <ul id="picked_components"></ul>
+                    </td>
+                    <td id="picked_colonies_td">
+                        <ul id="picked_colonies"></ul>
+                    </td>
+                </tr>
+            </table>
+            <!-- <h3 id="picked_map"></h3>
             <div id="components_div">
                 <h3 id="components_heading">Components:</h3>
                 <ul id="picked_components"></ul>
@@ -81,7 +102,7 @@
             <div id="colonies_results" style="display: none;">
                 <h3 id="colonies_heading">Colonies:</h3>
                 <ul id="picked_colonies"></ul>
-            </div>
+            </div> -->
         </div>
         <div>
             <p>See the code and contribute <a href="https://github.com/Grant094/terraforming-mars-picker">here.</a></p>
