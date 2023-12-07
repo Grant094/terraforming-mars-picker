@@ -122,3 +122,21 @@ function listPickedItems(pickedItems, parentElement) {
         parentElement.appendChild(child);
     }
 };
+
+function increment(id) {
+    let element = document.getElementById(id);
+    if (element.value < element.max) {
+        element.value = Number(element.value) + 1;
+        element.setAttribute('value', Number(element.getAttribute('value')) + 1);
+    }
+    alignMinAndMax();
+};
+
+function decrement(id) {
+    let element = document.getElementById(id);
+    if (element.value > element.min) {
+        element.value = Number(element.value) - 1;
+        element.setAttribute('value', Number(element.getAttribute('value')) - 1);
+    }
+    alignMinAndMax();
+};
