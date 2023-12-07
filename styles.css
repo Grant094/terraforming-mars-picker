@@ -16,3 +16,7 @@ li {
     padding-left: 3px;
     margin-left: 10px;
 }
+
+.plus_button, .minus_button {
+    width: 25px;
+}
