@@ -108,6 +108,9 @@ function alignMinAndMax() {
     maxComponentsElement.value = maxComponentsElement.getAttribute('value'); // make sure change in value attribute propagates to the page
 
     minComponentsElement.setAttribute('max', maxComponentsElement.value);
+    minComponentsElement.setAttribute('value', (minComponentsElement.value > minComponentsElement.max ? minComponentsElement.max : minComponentsElement.value));
+    minComponentsElement.value = minComponentsElement.getAttribute('value'); // make sure change in value attribute propagates to the page
+
     maxComponentsElement.setAttribute('min', minComponentsElement.value);
 };
 
