@@ -25,6 +25,8 @@
             <label for="Colonies">Colonies</label>
             <input type="checkbox" id="Turmoil" name="component" value="Turmoil" onchange="alignMinAndMax()" checked />
             <label for="Turmoil">Turmoil</label>
+            <input type="checkbox" id="Awards & Milestones" name="component" value="Awards & Milestones" onchange="alignMinAndMax()" checked />
+            <label for="Awards & Milestones">Awards & Milestones</label>
             <br />
             <br />
             <label for="min_components">Min:</label>
@@ -33,7 +35,7 @@
             <button type="button" onclick="increment('min_components')" class="plus_button">+</button>
             <label for="max_components">Max:</label>
             <button type="button" onclick="decrement('max_components')" class="minus_button">-</button>
-            <input type="number" id="max_components" name="max_components" min="0" max="5" value="5" onchange="alignMinAndMax()" />
+            <input type="number" id="max_components" name="max_components" min="0" max="6" value="6" onchange="alignMinAndMax()" />
             <button type="button" onclick="increment('max_components')" class="plus_button">+</button>
         </form>
         <br />
