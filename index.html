@@ -1,90 +1,103 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="./styles.css" />
-        <script src="./main.js"></script>
-    </head>
-    <body>
-        <h1>Terraforming Mars Picker</h1>
-        <h2>Randomly select which components to play with!</h2>
-        <form>
-            <label for="players">Players:</label>
-            <button type="button" onclick="decrement('players')" class="minus_button">-</button>
-            <input type="number" id="players" name="players" min="1" max="5" value="2" />
-            <button type="button" onclick="increment('players')" class="plus_button">+</button>
-            <br />
-            <br />
-            <button type="button" onclick="invertCheckedComponents()">Invert</button>
-            <input type="checkbox" id="Corporate Era" name="component" value="Corporate Era" onchange="alignMinAndMax()" checked />
-            <label for="Corporate Era">Corporate Era</label>
-            <input type="checkbox" id="Prelude" name="component" value="Prelude" onchange="alignMinAndMax()" checked />
-            <label for="Prelude">Prelude</label>
-            <input type="checkbox" id="Venus Next" name="component" value="Venus Next" onchange="alignMinAndMax()" checked />
-            <label for="Venus Next">Venus Next</label>
-            <input type="checkbox" id="Colonies" name="component" value="Colonies" onchange="showOrHideColonies();alignMinAndMax()" checked />
-            <label for="Colonies">Colonies</label>
-            <input type="checkbox" id="Turmoil" name="component" value="Turmoil" onchange="alignMinAndMax()" checked />
-            <label for="Turmoil">Turmoil</label>
-            <input type="checkbox" id="Awards & Milestones" name="component" value="Awards & Milestones" onchange="alignMinAndMax()" checked />
-            <label for="Awards & Milestones">Awards & Milestones</label>
-            <br />
-            <br />
-            <label for="min_components">Min:</label>
-            <button type="button" onclick="decrement('min_components')" class="minus_button">-</button>
-            <input type="number" id="min_components" name="min_components" min="0" max="5" value="0" onchange="alignMinAndMax()" />
-            <button type="button" onclick="increment('min_components')" class="plus_button">+</button>
-            <label for="max_components">Max:</label>
-            <button type="button" onclick="decrement('max_components')" class="minus_button">-</button>
-            <input type="number" id="max_components" name="max_components" min="0" max="6" value="6" onchange="alignMinAndMax()" />
-            <button type="button" onclick="increment('max_components')" class="plus_button">+</button>
-        </form>
+
+<head>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./main.js"></script>
+</head>
+
+<body>
+    <h1>Terraforming Mars Picker</h1>
+    <h2>Randomly select which components to play with!</h2>
+    <form>
+        <label for="players">Players:</label>
+        <button type="button" onclick="decrement('players')" class="minus_button">-</button>
+        <input type="number" id="players" name="players" min="1" max="5" value="2" />
+        <button type="button" onclick="increment('players')" class="plus_button">+</button>
         <br />
-        <div id="maps_div">
-            <h3>Maps:</h3>
-            <form>
-                <input type="checkbox" id="Tharsis" name="map" class="Tharsis" value="Tharsis" checked />
-                <label for="Tharsis">Tharsis</label>
-                <input type="checkbox" id="Hellas" name="map" class="Hellas & Elysium" value="Hellas" checked />
-                <label for="Hellas">Hellas</label>
-                <input type="checkbox" id="Elysium" name="map" class="Hellas & Elysium" value="Elysium" checked />
-                <label for="Elysium">Elysium</label>
-                <input type="checkbox" id="Terra Cimmeria" name="map" class="More Terraforming Mars" value="Terra Cimmeria" checked />
-                <label for="Terra Cimmeria">Terra Cimmeria</label>
-                <input type="checkbox" id="Utopia Planitia" name="map" class="More Terraforming Mars" value="Utopia Planitia" checked />
-                <label for="Utopia Planitia">Utopia Planitia</label>
-                <input type="checkbox" id="Vastitas Borealis" name="map" class="More Terraforming Mars" value="Vastitas Borealis" checked />
-                <label for="Vastitas Borealis">Vastitas Borealis</label>
-                <input type="checkbox" id="Amazonis Planitia" name="map" class="More Terraforming Mars" value="Amazonis Planitia" checked />
-                <label for="Amazonis Planitia">Amazonis Planitia</label>
-            </form>
-        </div>
-        <div id="colonies_div">
-            <h3>Colonies:</h3>
-            <form>
-                <input type="checkbox" id="Callisto" name="colony" value="Callisto" checked />
-                <label for="Callisto">Callisto</label>
-                <input type="checkbox" id="Ceres" name="colony" value="Ceres" checked />
-                <label for="Ceres">Ceres</label>
-                <input type="checkbox" id="Enceladus" name="colony" value="Enceladus" checked />
-                <label for="Enceladus">Enceladus</label>
-                <input type="checkbox" id="Europa" name="colony" value="Europa" checked />
-                <label for="Europa">Europa</label>
-                <input type="checkbox" id="Ganymede" name="colony" value="Ganymede" checked />
-                <label for="Ganymede">Ganymede</label>
-                <input type="checkbox" id="Io" name="colony" value="Io" checked />
-                <label for="Io">Io</label>
-                <input type="checkbox" id="Luna" name="colony" value="Luna" checked />
-                <label for="Luna">Luna</label>
-                <input type="checkbox" id="Miranda" name="colony" value="Miranda" checked />
-                <label for="Miranda">Miranda</label>
-                <input type="checkbox" id="Pluto" name="colony" value="Pluto" checked />
-                <label for="Pluto">Pluto</label>
-                <input type="checkbox" id="Titan" name="colony" value="Titan" checked />
-                <label for="Titan">Titan</label>
-                <input type="checkbox" id="Triton" name="colony" value="Triton" checked />
-                <label for="Triton">Triton</label>
-            </form>
-        </div>
+        <br />
+        <button type="button" onclick="invertCheckedComponents()">Invert</button>
+        <input type="checkbox" id="Corporate Era" name="component" value="Corporate Era" onchange="alignMinAndMax()"
+            checked />
+        <label for="Corporate Era">Corporate Era</label>
+        <input type="checkbox" id="Prelude" name="component" value="Prelude" onchange="alignMinAndMax()" checked />
+        <label for="Prelude">Prelude</label>
+        <input type="checkbox" id="Venus Next" name="component" value="Venus Next" onchange="alignMinAndMax()"
+            checked />
+        <label for="Venus Next">Venus Next</label>
+        <input type="checkbox" id="Colonies" name="component" value="Colonies"
+            onchange="showOrHideDiv('colonies_div', 'Colonies');alignMinAndMax()" checked />
+        <label for="Colonies">Colonies</label>
+        <input type="checkbox" id="Turmoil" name="component" value="Turmoil" onchange="alignMinAndMax()" checked />
+        <label for="Turmoil">Turmoil</label>
+        <input type="checkbox" id="Awards & Milestones" name="component" value="Awards & Milestones"
+            onchange="showOrHideDiv('awards_and_milestones_div', 'Awards & Milestones');alignMinAndMax()" checked />
+        <label for="Awards & Milestones">Awards & Milestones</label>
+        <br />
+        <br />
+        <label for="min_components">Min:</label>
+        <button type="button" onclick="decrement('min_components')" class="minus_button">-</button>
+        <input type="number" id="min_components" name="min_components" min="0" max="5" value="0"
+            onchange="alignMinAndMax()" />
+        <button type="button" onclick="increment('min_components')" class="plus_button">+</button>
+        <label for="max_components">Max:</label>
+        <button type="button" onclick="decrement('max_components')" class="minus_button">-</button>
+        <input type="number" id="max_components" name="max_components" min="0" max="6" value="6"
+            onchange="alignMinAndMax()" />
+        <button type="button" onclick="increment('max_components')" class="plus_button">+</button>
+    </form>
+    <br />
+    <div id="maps_div">
+        <h3>Maps:</h3>
+        <form>
+            <input type="checkbox" id="Tharsis" name="map" class="Tharsis" value="Tharsis" checked />
+            <label for="Tharsis">Tharsis</label>
+            <input type="checkbox" id="Hellas" name="map" class="Hellas & Elysium" value="Hellas" checked />
+            <label for="Hellas">Hellas</label>
+            <input type="checkbox" id="Elysium" name="map" class="Hellas & Elysium" value="Elysium" checked />
+            <label for="Elysium">Elysium</label>
+            <input type="checkbox" id="Terra Cimmeria" name="map" class="More Terraforming Mars" value="Terra Cimmeria"
+                checked />
+            <label for="Terra Cimmeria">Terra Cimmeria</label>
+            <input type="checkbox" id="Utopia Planitia" name="map" class="More Terraforming Mars"
+                value="Utopia Planitia" checked />
+            <label for="Utopia Planitia">Utopia Planitia</label>
+            <input type="checkbox" id="Vastitas Borealis" name="map" class="More Terraforming Mars"
+                value="Vastitas Borealis" checked />
+            <label for="Vastitas Borealis">Vastitas Borealis</label>
+            <input type="checkbox" id="Amazonis Planitia" name="map" class="More Terraforming Mars"
+                value="Amazonis Planitia" checked />
+            <label for="Amazonis Planitia">Amazonis Planitia</label>
+        </form>
+    </div>
+    <div id="colonies_div">
+        <h3>Colonies:</h3>
+        <form>
+            <input type="checkbox" id="Callisto" name="colony" value="Callisto" checked />
+            <label for="Callisto">Callisto</label>
+            <input type="checkbox" id="Ceres" name="colony" value="Ceres" checked />
+            <label for="Ceres">Ceres</label>
+            <input type="checkbox" id="Enceladus" name="colony" value="Enceladus" checked />
+            <label for="Enceladus">Enceladus</label>
+            <input type="checkbox" id="Europa" name="colony" value="Europa" checked />
+            <label for="Europa">Europa</label>
+            <input type="checkbox" id="Ganymede" name="colony" value="Ganymede" checked />
+            <label for="Ganymede">Ganymede</label>
+            <input type="checkbox" id="Io" name="colony" value="Io" checked />
+            <label for="Io">Io</label>
+            <input type="checkbox" id="Luna" name="colony" value="Luna" checked />
+            <label for="Luna">Luna</label>
+            <input type="checkbox" id="Miranda" name="colony" value="Miranda" checked />
+            <label for="Miranda">Miranda</label>
+            <input type="checkbox" id="Pluto" name="colony" value="Pluto" checked />
+            <label for="Pluto">Pluto</label>
+            <input type="checkbox" id="Titan" name="colony" value="Titan" checked />
+            <label for="Titan">Titan</label>
+            <input type="checkbox" id="Triton" name="colony" value="Triton" checked />
+            <label for="Triton">Triton</label>
+        </form>
+    </div>
+    <div id="awards_and_milestones_div">
         <div id="milestones_div">
             <h3>Milestones:</h3>
             <form>
@@ -233,35 +246,37 @@
                 <label for="Zoologist">Zoologist</label>
             </form>
         </div>
-        <br />
-        <button type="button" onclick="pick()">Pick!</button>
-        <br />
-        <div id="results" style="display: none;">
-            <h2>Results:</h2>
-            <table>
-                <colgroup>
-                    <col id="picked_map_col" />
-                    <col id="picked_components_col" />
-                    <col id="picked_colonies_col" />
-                </colgroup>
-                <tr>
-                    <th>Map</th>
-                    <th>Expansions</th>
-                    <th id="picked_colonies_th">Colonies</th>
-                </tr>
-                <tr>
-                    <td id="picked_map_td"></td>
-                    <td id="picked_components_td">
-                        <ul id="picked_components"></ul>
-                    </td>
-                    <td id="picked_colonies_td">
-                        <ul id="picked_colonies"></ul>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div>
-            <p>See the code and contribute <a href="https://github.com/Grant094/terraforming-mars-picker">here.</a></p>
-        </div>
-    </body>
+    </div>
+    <br />
+    <button type="button" onclick="pick()">Pick!</button>
+    <br />
+    <div id="results" style="display: none;">
+        <h2>Results:</h2>
+        <table>
+            <colgroup>
+                <col id="picked_map_col" />
+                <col id="picked_components_col" />
+                <col id="picked_colonies_col" />
+            </colgroup>
+            <tr>
+                <th>Map</th>
+                <th>Expansions</th>
+                <th id="picked_colonies_th">Colonies</th>
+            </tr>
+            <tr>
+                <td id="picked_map_td"></td>
+                <td id="picked_components_td">
+                    <ul id="picked_components"></ul>
+                </td>
+                <td id="picked_colonies_td">
+                    <ul id="picked_colonies"></ul>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <p>See the code and contribute <a href="https://github.com/Grant094/terraforming-mars-picker">here.</a></p>
+    </div>
+</body>
+
 </html>

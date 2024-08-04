@@ -154,16 +154,12 @@ function pick() {
     resultsDiv.style.display = 'inline';
 };
 
-function showOrHideColonies() {
-    let coloniesDiv = document.getElementById('colonies_div');
-    let coloniesElement = document.getElementById('Colonies');
+function showOrHideDiv(divId, checkboxId) {
+    let div = document.getElementById(divId);
+    let checkbox = document.getElementById(checkboxId);
 
-    if (coloniesElement.checked) {
-        coloniesDiv.style.display = 'inline';
-    } else {
-        coloniesDiv.style.display = 'none';
-    }
-};
+    div.style.display = (checkbox.checked ? 'inline': 'none');
+}
 
 function invertCheckedComponents() {
     let components = document.querySelectorAll('input[name="component"]');
@@ -171,7 +167,9 @@ function invertCheckedComponents() {
         component.checked = !(component.checked);
     }
 
-    showOrHideColonies(); // needed since toggling checkbox this way does not trigger inline onchange event
+    // below statements needed since toggling checkbox this way does not trigger inline onchange event
+    showOrHideDiv('colonies_div', 'Colonies');
+    showOrHideDiv('awards_and_milestones_div', 'Awards & Milestones');
 };
 
 function alignMinAndMax() {
