@@ -74,6 +74,8 @@ const AWARDS = [
     "Zoologist",
 ];
 
+const MILESTONES_OR_AWARDS_TO_PICK = 5;
+
 function pick() {
     // NOTE on terminology: 
     // * "checked" means checkboxes checked by the user
@@ -90,11 +92,19 @@ function pick() {
         5: 7
     };
 
+    //#region clear out previously picked items
     let pickedComponentsElement = document.getElementById("picked_components");
-    pickedComponentsElement.innerHTML = ''; // clear out previously picked components
+    pickedComponentsElement.innerHTML = '';
 
     let pickedColoniesElement = document.getElementById('picked_colonies');
-    pickedColoniesElement.innerHTML = ""; // clear-out previously picked colonies
+    pickedColoniesElement.innerHTML = "";
+
+    let pickedMilestonesElement = document.getElementById('picked_milestones');
+    pickedMilestonesElement.innerHTML = "";
+
+    let pickedAwardsElement = document.getElementById('picked_awards');
+    pickedAwardsElement.innerHTML = "";
+    //#endregion
 
     let resultsDiv = document.getElementById('results');
     let componentsDiv = document.getElementById('picked_components_td');
@@ -136,11 +146,27 @@ function pick() {
             }
     
             listPickedItems(coloniesPicked, pickedColoniesElement);
+        } else if (component.value === "Awards & Milestones") {
+            let milestonesChecked = document.querySelectorAll('input[name="milestone"]:checked');
+            let milestonesPicked = new Set();
+            let awardsChecked = document.querySelectorAll('input[name="award"]:checked');
+            let awardsPicked = new Set();
+
+            while (milestonesPicked.size < MILESTONES_OR_AWARDS_TO_PICK) {
+                milestonesPicked.add(pickItem(milestonesChecked));
+            }
+
+            while (awardsPicked.size < MILESTONES_OR_AWARDS_TO_PICK) {
+                awardsPicked.add(pickItem(awardsChecked));
+            }
+
+            listPickedItems(milestonesPicked, pickedMilestonesElement);
+            listPickedItems(awardsPicked, pickedAwardsElement);
         }
     }
     
     let mapsChecked = document.querySelectorAll('input[name="map"]:checked');
-    let mapPicked = mapsChecked[Math.floor(Math.random() * mapsChecked.length)];
+    let mapPicked = mapsChecked[Math.floor(Math.random() * mapsChecked.length)]; // #TODO change to use pickItem()
     document.getElementById('picked_map_td').innerHTML = mapPicked.value;
 
     let pickedColoniesCol = document.getElementById('picked_colonies_col');
@@ -150,6 +176,9 @@ function pick() {
         pickedColoniesCol.style.visibility = 'collapse';
     }
 
+    document.getElementById('picked_milestones_col').style.visibility = (pickedMilestonesElement.children.length > 0) ? 'visible' : 'collapse';
+
+    document.getElementById('picked_awards_col').style.visibility = (pickedAwardsElement.children.length > 0) ? 'visible' : 'collapse';
     
     resultsDiv.style.display = 'inline';
 };
