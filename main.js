@@ -132,7 +132,7 @@ function pick() {
         document.getElementById('picked_components').style.display = 'inline';
         listPickedItems(componentsPicked, pickedComponentsElement);
     }
-
+    
     // if the Colonies component was picked, pick which colonies to play with
     for (const component of componentsPicked) {
         if (component.value === "Colonies") {
@@ -160,6 +160,17 @@ function pick() {
                 awardsPicked.add(pickItem(awardsChecked));
             }
 
+            if (pickedComponentsElement.innerHTML.includes("Venus")) {
+                let hoverlordMilestone = document.createElement('input');
+                let venuphileAward = document.createElement('input');
+
+                hoverlordMilestone.value = "Hoverlord";
+                venuphileAward.value = "Venuphile";
+
+                milestonesPicked.add(hoverlordMilestone);
+                awardsPicked.add(venuphileAward);
+            }
+
             listPickedItems(milestonesPicked, pickedMilestonesElement);
             listPickedItems(awardsPicked, pickedAwardsElement);
         }
@@ -169,7 +180,7 @@ function pick() {
     let mapPicked = mapsChecked[Math.floor(Math.random() * mapsChecked.length)]; // #TODO change to use pickItem()
     document.getElementById('picked_map_td').innerHTML = mapPicked.value;
 
-    let pickedColoniesCol = document.getElementById('picked_colonies_col');
+    let pickedColoniesCol = document.getElementById('picked_colonies_col'); // #TODO align with how milestones and awards are made visible
     if (pickedColoniesElement.children.length > 0) {
         pickedColoniesCol.style.visibility = 'visible';
     } else {
