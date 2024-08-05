@@ -25,6 +25,10 @@ input {
     text-align: center;
 }
 
+div {
+    flex-flow: row wrap;
+}
+
 /* Remove Arrows/Spinners */
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
