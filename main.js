@@ -1,3 +1,81 @@
+const MILESTONES = [
+    "Briber",
+    "Builder",
+    "Coastguard",
+    "Diversifier",
+    "Ecologist",
+    "Enegizer",
+    "Engineer",
+    "Farmer",
+    "Forester",
+    "Fundraiser",
+    "Gardener",
+    "Generalist",
+    "Geologist",
+    "Hydrologist",
+    "Landshaper",
+    "Legend",
+    "Lobbyist",
+    "Mayor",
+    "Merchant",
+    "Metallurgist",
+    "Philantropist",
+    "Pioneer",
+    "Planetologist",
+    "Planner",
+    "Producer",
+    "Researcher",
+    "Rim Settler",
+    "Spacefarer",
+    "Sponsor",
+    "Tactician",
+    "Terraformer",
+    "Terran",
+    "Thawer",
+    "Trader",
+    "Tycoon",
+];
+
+const AWARDS = [
+    "Administrator",
+    "Banker",
+    "Benefactor",
+    "Biologist",
+    "Botanist",
+    "Celebrity",
+    "Collector",
+    "Constructor",
+    "Contractor",
+    "Cultivator",
+    "Electrician",
+    "Estate Dealer",
+    "Excentric",
+    "Forecaster",
+    "Founder",
+    "Highlander",
+    "Incorporator",
+    "Industrialist",
+    "Investor",
+    "Landlord",
+    "Landscaper",
+    "Magnate",
+    "Manufacturer",
+    "Metropolist",
+    "Miner",
+    "Mogul",
+    "Politician",
+    "Promoter",
+    "Scientist",
+    "Space Baron",
+    "Suburbian",
+    "Thermalist",
+    "Traveller",
+    "Visionary",
+    "Zoologist",
+];
+
+const MILESTONES_OR_AWARDS_TO_PICK = 5;
+
 function pick() {
     // NOTE on terminology: 
     // * "checked" means checkboxes checked by the user
@@ -14,11 +92,19 @@ function pick() {
         5: 7
     };
 
+    //#region clear out previously picked items
     let pickedComponentsElement = document.getElementById("picked_components");
-    pickedComponentsElement.innerHTML = ''; // clear out previously picked components
+    pickedComponentsElement.innerHTML = '';
 
     let pickedColoniesElement = document.getElementById('picked_colonies');
-    pickedColoniesElement.innerHTML = ""; // clear-out previously picked colonies
+    pickedColoniesElement.innerHTML = "";
+
+    let pickedMilestonesElement = document.getElementById('picked_milestones');
+    pickedMilestonesElement.innerHTML = "";
+
+    let pickedAwardsElement = document.getElementById('picked_awards');
+    pickedAwardsElement.innerHTML = "";
+    //#endregion
 
     let resultsDiv = document.getElementById('results');
     let componentsDiv = document.getElementById('picked_components_td');
@@ -46,7 +132,7 @@ function pick() {
         document.getElementById('picked_components').style.display = 'inline';
         listPickedItems(componentsPicked, pickedComponentsElement);
     }
-
+    
     // if the Colonies component was picked, pick which colonies to play with
     for (const component of componentsPicked) {
         if (component.value === "Colonies") {
@@ -60,34 +146,60 @@ function pick() {
             }
     
             listPickedItems(coloniesPicked, pickedColoniesElement);
+        } else if (component.value === "Awards & Milestones") {
+            let milestonesChecked = document.querySelectorAll('input[name="milestone"]:checked');
+            let milestonesPicked = new Set();
+            let awardsChecked = document.querySelectorAll('input[name="award"]:checked');
+            let awardsPicked = new Set();
+
+            while (milestonesPicked.size < MILESTONES_OR_AWARDS_TO_PICK) {
+                milestonesPicked.add(pickItem(milestonesChecked));
+            }
+
+            while (awardsPicked.size < MILESTONES_OR_AWARDS_TO_PICK) {
+                awardsPicked.add(pickItem(awardsChecked));
+            }
+
+            if (pickedComponentsElement.innerHTML.includes("Venus")) {
+                let hoverlordMilestone = document.createElement('input');
+                let venuphileAward = document.createElement('input');
+
+                hoverlordMilestone.value = "Hoverlord";
+                venuphileAward.value = "Venuphile";
+
+                milestonesPicked.add(hoverlordMilestone);
+                awardsPicked.add(venuphileAward);
+            }
+
+            listPickedItems(milestonesPicked, pickedMilestonesElement);
+            listPickedItems(awardsPicked, pickedAwardsElement);
         }
     }
     
     let mapsChecked = document.querySelectorAll('input[name="map"]:checked');
-    let mapPicked = mapsChecked[Math.floor(Math.random() * mapsChecked.length)];
+    let mapPicked = mapsChecked[Math.floor(Math.random() * mapsChecked.length)]; // #TODO change to use pickItem()
     document.getElementById('picked_map_td').innerHTML = mapPicked.value;
 
-    let pickedColoniesCol = document.getElementById('picked_colonies_col');
+    let pickedColoniesCol = document.getElementById('picked_colonies_col'); // #TODO align with how milestones and awards are made visible
     if (pickedColoniesElement.children.length > 0) {
         pickedColoniesCol.style.visibility = 'visible';
     } else {
         pickedColoniesCol.style.visibility = 'collapse';
     }
 
+    document.getElementById('picked_milestones_col').style.visibility = (pickedMilestonesElement.children.length > 0) ? 'visible' : 'collapse';
+
+    document.getElementById('picked_awards_col').style.visibility = (pickedAwardsElement.children.length > 0) ? 'visible' : 'collapse';
     
     resultsDiv.style.display = 'inline';
 };
 
-function showOrHideColonies() {
-    let coloniesDiv = document.getElementById('colonies_div');
-    let coloniesElement = document.getElementById('Colonies');
+function showOrHideDiv(divId, checkboxId) {
+    let div = document.getElementById(divId);
+    let checkbox = document.getElementById(checkboxId);
 
-    if (coloniesElement.checked) {
-        coloniesDiv.style.display = 'inline';
-    } else {
-        coloniesDiv.style.display = 'none';
-    }
-};
+    div.style.display = (checkbox.checked ? 'inline': 'none');
+}
 
 function invertCheckedComponents() {
     let components = document.querySelectorAll('input[name="component"]');
@@ -95,7 +207,9 @@ function invertCheckedComponents() {
         component.checked = !(component.checked);
     }
 
-    showOrHideColonies(); // needed since toggling checkbox this way does not trigger inline onchange event
+    // below statements needed since toggling checkbox this way does not trigger inline onchange event
+    showOrHideDiv('colonies_div', 'Colonies');
+    showOrHideDiv('awards_and_milestones_div', 'Awards & Milestones');
 };
 
 function alignMinAndMax() {

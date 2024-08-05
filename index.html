@@ -1,117 +1,292 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="./styles.css" />
-        <script src="./main.js"></script>
-    </head>
-    <body>
-        <h1>Terraforming Mars Picker</h1>
-        <h2>Randomly select which components to play with!</h2>
+
+<head>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./main.js"></script>
+</head>
+
+<body>
+    <h1>Terraforming Mars Picker</h1>
+    <h2>Randomly select which components to play with!</h2>
+    <form>
+        <label for="players">Players:</label>
+        <button type="button" onclick="decrement('players')" class="minus_button">-</button>
+        <input type="number" id="players" name="players" min="1" max="5" value="2" />
+        <button type="button" onclick="increment('players')" class="plus_button">+</button>
+        <br />
+        <br />
+        <button type="button" onclick="invertCheckedComponents()">Invert</button>
+        <input type="checkbox" id="Corporate Era" name="component" value="Corporate Era" onchange="alignMinAndMax()"
+            checked />
+        <label for="Corporate Era">Corporate Era</label>
+        <input type="checkbox" id="Prelude" name="component" value="Prelude" onchange="alignMinAndMax()" checked />
+        <label for="Prelude">Prelude</label>
+        <input type="checkbox" id="Venus Next" name="component" value="Venus Next" onchange="alignMinAndMax()"
+            checked />
+        <label for="Venus Next">Venus Next</label>
+        <input type="checkbox" id="Colonies" name="component" value="Colonies"
+            onchange="showOrHideDiv('colonies_div', 'Colonies');alignMinAndMax()" checked />
+        <label for="Colonies">Colonies</label>
+        <input type="checkbox" id="Turmoil" name="component" value="Turmoil" onchange="alignMinAndMax()" checked />
+        <label for="Turmoil">Turmoil</label>
+        <input type="checkbox" id="Awards & Milestones" name="component" value="Awards & Milestones"
+            onchange="showOrHideDiv('awards_and_milestones_div', 'Awards & Milestones');alignMinAndMax()" checked />
+        <label for="Awards & Milestones">Awards & Milestones</label>
+        <br />
+        <br />
+        <label for="min_components">Min:</label>
+        <button type="button" onclick="decrement('min_components')" class="minus_button">-</button>
+        <input type="number" id="min_components" name="min_components" min="0" max="5" value="0"
+            onchange="alignMinAndMax()" />
+        <button type="button" onclick="increment('min_components')" class="plus_button">+</button>
+        <label for="max_components">Max:</label>
+        <button type="button" onclick="decrement('max_components')" class="minus_button">-</button>
+        <input type="number" id="max_components" name="max_components" min="0" max="6" value="6"
+            onchange="alignMinAndMax()" />
+        <button type="button" onclick="increment('max_components')" class="plus_button">+</button>
+    </form>
+    <br />
+    <div id="maps_div">
+        <h3>Maps:</h3>
         <form>
-            <label for="players">Players:</label>
-            <button type="button" onclick="decrement('players')" class="minus_button">-</button>
-            <input type="number" id="players" name="players" min="1" max="5" value="2" />
-            <button type="button" onclick="increment('players')" class="plus_button">+</button>
-            <br />
-            <br />
-            <button type="button" onclick="invertCheckedComponents()">Invert</button>
-            <input type="checkbox" id="Corporate Era" name="component" value="Corporate Era" onchange="alignMinAndMax()" checked />
-            <label for="Corporate Era">Corporate Era</label>
-            <input type="checkbox" id="Prelude" name="component" value="Prelude" onchange="alignMinAndMax()" checked />
-            <label for="Prelude">Prelude</label>
-            <input type="checkbox" id="Venus Next" name="component" value="Venus Next" onchange="alignMinAndMax()" checked />
-            <label for="Venus Next">Venus Next</label>
-            <input type="checkbox" id="Colonies" name="component" value="Colonies" onchange="showOrHideColonies();alignMinAndMax()" checked />
-            <label for="Colonies">Colonies</label>
-            <input type="checkbox" id="Turmoil" name="component" value="Turmoil" onchange="alignMinAndMax()" checked />
-            <label for="Turmoil">Turmoil</label>
-            <br />
-            <br />
-            <label for="min_components">Min:</label>
-            <button type="button" onclick="decrement('min_components')" class="minus_button">-</button>
-            <input type="number" id="min_components" name="min_components" min="0" max="5" value="0" onchange="alignMinAndMax()" />
-            <button type="button" onclick="increment('min_components')" class="plus_button">+</button>
-            <label for="max_components">Max:</label>
-            <button type="button" onclick="decrement('max_components')" class="minus_button">-</button>
-            <input type="number" id="max_components" name="max_components" min="0" max="5" value="5" onchange="alignMinAndMax()" />
-            <button type="button" onclick="increment('max_components')" class="plus_button">+</button>
+            <input type="checkbox" id="Tharsis" name="map" class="Tharsis" value="Tharsis" checked />
+            <label for="Tharsis">Tharsis</label>
+            <input type="checkbox" id="Hellas" name="map" class="Hellas & Elysium" value="Hellas" checked />
+            <label for="Hellas">Hellas</label>
+            <input type="checkbox" id="Elysium" name="map" class="Hellas & Elysium" value="Elysium" checked />
+            <label for="Elysium">Elysium</label>
+            <input type="checkbox" id="Terra Cimmeria" name="map" class="More Terraforming Mars" value="Terra Cimmeria"
+                checked />
+            <label for="Terra Cimmeria">Terra Cimmeria</label>
+            <input type="checkbox" id="Utopia Planitia" name="map" class="More Terraforming Mars"
+                value="Utopia Planitia" checked />
+            <label for="Utopia Planitia">Utopia Planitia</label>
+            <input type="checkbox" id="Vastitas Borealis" name="map" class="More Terraforming Mars"
+                value="Vastitas Borealis" checked />
+            <label for="Vastitas Borealis">Vastitas Borealis</label>
+            <input type="checkbox" id="Amazonis Planitia" name="map" class="More Terraforming Mars"
+                value="Amazonis Planitia" checked />
+            <label for="Amazonis Planitia">Amazonis Planitia</label>
         </form>
-        <br />
-        <div id="maps_div">
-            <h3>Maps:</h3>
+    </div>
+    <div id="colonies_div">
+        <h3>Colonies:</h3>
+        <form>
+            <input type="checkbox" id="Callisto" name="colony" value="Callisto" checked />
+            <label for="Callisto">Callisto</label>
+            <input type="checkbox" id="Ceres" name="colony" value="Ceres" checked />
+            <label for="Ceres">Ceres</label>
+            <input type="checkbox" id="Enceladus" name="colony" value="Enceladus" checked />
+            <label for="Enceladus">Enceladus</label>
+            <input type="checkbox" id="Europa" name="colony" value="Europa" checked />
+            <label for="Europa">Europa</label>
+            <input type="checkbox" id="Ganymede" name="colony" value="Ganymede" checked />
+            <label for="Ganymede">Ganymede</label>
+            <input type="checkbox" id="Io" name="colony" value="Io" checked />
+            <label for="Io">Io</label>
+            <input type="checkbox" id="Luna" name="colony" value="Luna" checked />
+            <label for="Luna">Luna</label>
+            <input type="checkbox" id="Miranda" name="colony" value="Miranda" checked />
+            <label for="Miranda">Miranda</label>
+            <input type="checkbox" id="Pluto" name="colony" value="Pluto" checked />
+            <label for="Pluto">Pluto</label>
+            <input type="checkbox" id="Titan" name="colony" value="Titan" checked />
+            <label for="Titan">Titan</label>
+            <input type="checkbox" id="Triton" name="colony" value="Triton" checked />
+            <label for="Triton">Triton</label>
+        </form>
+    </div>
+    <div id="awards_and_milestones_div">
+        <div id="milestones_div">
+            <h3>Milestones:</h3>
             <form>
-                <input type="checkbox" id="Tharsis" name="map" class="Tharsis" value="Tharsis" checked />
-                <label for="Tharsis">Tharsis</label>
-                <input type="checkbox" id="Hellas" name="map" class="Hellas & Elysium" value="Hellas" checked />
-                <label for="Hellas">Hellas</label>
-                <input type="checkbox" id="Elysium" name="map" class="Hellas & Elysium" value="Elysium" checked />
-                <label for="Elysium">Elysium</label>
-                <input type="checkbox" id="Terra Cimmeria" name="map" class="More Terraforming Mars" value="Terra Cimmeria" checked />
-                <label for="Terra Cimmeria">Terra Cimmeria</label>
-                <input type="checkbox" id="Utopia Planitia" name="map" class="More Terraforming Mars" value="Utopia Planitia" checked />
-                <label for="Utopia Planitia">Utopia Planitia</label>
-                <input type="checkbox" id="Vastitas Borealis" name="map" class="More Terraforming Mars" value="Vastitas Borealis" checked />
-                <label for="Vastitas Borealis">Vastitas Borealis</label>
-                <input type="checkbox" id="Amazonis Planitia" name="map" class="More Terraforming Mars" value="Amazonis Planitia" checked />
-                <label for="Amazonis Planitia">Amazonis Planitia</label>
+                <input type="checkbox" id="Briber" name="milestone" value="Briber" checked />
+                <label for="Briber">Briber</label>
+                <input type="checkbox" id="Builder" name="milestone" value="Builder" checked />
+                <label for="Builder">Builder</label>
+                <input type="checkbox" id="Coastguard" name="milestone" value="Coastguard" checked />
+                <label for="Coastguard">Coastguard</label>
+                <input type="checkbox" id="Diversifier" name="milestone" value="Diversifier" checked />
+                <label for="Diversifier">Diversifier</label>
+                <input type="checkbox" id="Ecologist" name="milestone" value="Ecologist" checked />
+                <label for="Ecologist">Ecologist</label>
+                <input type="checkbox" id="Enegizer" name="milestone" value="Enegizer" checked />
+                <label for="Enegizer">Enegizer</label>
+                <input type="checkbox" id="Engineer" name="milestone" value="Engineer" checked />
+                <label for="Engineer">Engineer</label>
+                <input type="checkbox" id="Farmer" name="milestone" value="Farmer" checked />
+                <label for="Farmer">Farmer</label>
+                <input type="checkbox" id="Forester" name="milestone" value="Forester" checked />
+                <label for="Forester">Forester</label>
+                <input type="checkbox" id="Fundraiser" name="milestone" value="Fundraiser" checked />
+                <label for="Fundraiser">Fundraiser</label>
+                <input type="checkbox" id="Gardener" name="milestone" value="Gardener" checked />
+                <label for="Gardener">Gardener</label>
+                <input type="checkbox" id="Generalist" name="milestone" value="Generalist" checked />
+                <label for="Generalist">Generalist</label>
+                <input type="checkbox" id="Geologist" name="milestone" value="Geologist" checked />
+                <label for="Geologist">Geologist</label>
+                <input type="checkbox" id="Hydrologist" name="milestone" value="Hydrologist" checked />
+                <label for="Hydrologist">Hydrologist</label>
+                <input type="checkbox" id="Landshaper" name="milestone" value="Landshaper" checked />
+                <label for="Landshaper">Landshaper</label>
+                <input type="checkbox" id="Legend" name="milestone" value="Legend" checked />
+                <label for="Legend">Legend</label>
+                <input type="checkbox" id="Lobbyist" name="milestone" value="Lobbyist" checked />
+                <label for="Lobbyist">Lobbyist</label>
+                <input type="checkbox" id="Mayor" name="milestone" value="Mayor" checked />
+                <label for="Mayor">Mayor</label>
+                <input type="checkbox" id="Merchant" name="milestone" value="Merchant" checked />
+                <label for="Merchant">Merchant</label>
+                <input type="checkbox" id="Metallurgist" name="milestone" value="Metallurgist" checked />
+                <label for="Metallurgist">Metallurgist</label>
+                <input type="checkbox" id="Philantropist" name="milestone" value="Philantropist" checked />
+                <label for="Philantropist">Philantropist</label>
+                <input type="checkbox" id="Pioneer" name="milestone" value="Pioneer" checked />
+                <label for="Pioneer">Pioneer</label>
+                <input type="checkbox" id="Planetologist" name="milestone" value="Planetologist" checked />
+                <label for="Planetologist">Planetologist</label>
+                <input type="checkbox" id="Planner" name="milestone" value="Planner" checked />
+                <label for="Planner">Planner</label>
+                <input type="checkbox" id="Producer" name="milestone" value="Producer" checked />
+                <label for="Producer">Producer</label>
+                <input type="checkbox" id="Researcher" name="milestone" value="Researcher" checked />
+                <label for="Researcher">Researcher</label>
+                <input type="checkbox" id="Rim Settler" name="milestone" value="Rim Settler" checked />
+                <label for="Rim Settler">Rim Settler</label>
+                <input type="checkbox" id="Spacefarer" name="milestone" value="Spacefarer" checked />
+                <label for="Spacefarer">Spacefarer</label>
+                <input type="checkbox" id="Sponsor" name="milestone" value="Sponsor" checked />
+                <label for="Sponsor">Sponsor</label>
+                <input type="checkbox" id="Tactician" name="milestone" value="Tactician" checked />
+                <label for="Tactician">Tactician</label>
+                <input type="checkbox" id="Terraformer" name="milestone" value="Terraformer" checked />
+                <label for="Terraformer">Terraformer</label>
+                <input type="checkbox" id="Terran" name="milestone" value="Terran" checked />
+                <label for="Terran">Terran</label>
+                <input type="checkbox" id="Thawer" name="milestone" value="Thawer" checked />
+                <label for="Thawer">Thawer</label>
+                <input type="checkbox" id="Trader" name="milestone" value="Trader" checked />
+                <label for="Trader">Trader</label>
+                <input type="checkbox" id="Tycoon" name="milestone" value="Tycoon" checked />
+                <label for="Tycoon">Tycoon</label>
             </form>
         </div>
-        <div id="colonies_div">
-            <h3>Colonies:</h3>
+        <div id="awards_div">
+            <h3>Awards:</h3>
             <form>
-                <input type="checkbox" id="Callisto" name="colony" value="Callisto" checked />
-                <label for="Callisto">Callisto</label>
-                <input type="checkbox" id="Ceres" name="colony" value="Ceres" checked />
-                <label for="Ceres">Ceres</label>
-                <input type="checkbox" id="Enceladus" name="colony" value="Enceladus" checked />
-                <label for="Enceladus">Enceladus</label>
-                <input type="checkbox" id="Europa" name="colony" value="Europa" checked />
-                <label for="Europa">Europa</label>
-                <input type="checkbox" id="Ganymede" name="colony" value="Ganymede" checked />
-                <label for="Ganymede">Ganymede</label>
-                <input type="checkbox" id="Io" name="colony" value="Io" checked />
-                <label for="Io">Io</label>
-                <input type="checkbox" id="Luna" name="colony" value="Luna" checked />
-                <label for="Luna">Luna</label>
-                <input type="checkbox" id="Miranda" name="colony" value="Miranda" checked />
-                <label for="Miranda">Miranda</label>
-                <input type="checkbox" id="Pluto" name="colony" value="Pluto" checked />
-                <label for="Pluto">Pluto</label>
-                <input type="checkbox" id="Titan" name="colony" value="Titan" checked />
-                <label for="Titan">Titan</label>
-                <input type="checkbox" id="Triton" name="colony" value="Triton" checked />
-                <label for="Triton">Triton</label>
+                <input type="checkbox" id="Administrator" name="award" value="Administrator" checked />
+                <label for="Administrator">Administrator</label>
+                <input type="checkbox" id="Banker" name="award" value="Banker" checked />
+                <label for="Banker">Banker</label>
+                <input type="checkbox" id="Benefactor" name="award" value="Benefactor" checked />
+                <label for="Benefactor">Benefactor</label>
+                <input type="checkbox" id="Biologist" name="award" value="Biologist" checked />
+                <label for="Biologist">Biologist</label>
+                <input type="checkbox" id="Botanist" name="award" value="Botanist" checked />
+                <label for="Botanist">Botanist</label>
+                <input type="checkbox" id="Celebrity" name="award" value="Celebrity" checked />
+                <label for="Celebrity">Celebrity</label>
+                <input type="checkbox" id="Collector" name="award" value="Collector" checked />
+                <label for="Collector">Collector</label>
+                <input type="checkbox" id="Constructor" name="award" value="Constructor" checked />
+                <label for="Constructor">Constructor</label>
+                <input type="checkbox" id="Cultivator" name="award" value="Cultivator" checked />
+                <label for="Cultivator">Cultivator</label>
+                <input type="checkbox" id="Electrician" name="award" value="Electrician" checked />
+                <label for="Electrician">Electrician</label>
+                <input type="checkbox" id="Estate Dealer" name="award" value="Estate Dealer" checked />
+                <label for="Estate Dealer">Estate Dealer</label>
+                <input type="checkbox" id="Excentric" name="award" value="Excentric" checked />
+                <label for="Excentric">Excentric</label>
+                <input type="checkbox" id="Forecaster" name="award" value="Forecaster" checked />
+                <label for="Forecaster">Forecaster</label>
+                <input type="checkbox" id="Founder" name="award" value="Founder" checked />
+                <label for="Founder">Founder</label>
+                <input type="checkbox" id="Highlander" name="award" value="Highlander" checked />
+                <label for="Highlander">Highlander</label>
+                <input type="checkbox" id="Incorporator" name="award" value="Incorporator" checked />
+                <label for="Incorporator">Incorporator</label>
+                <input type="checkbox" id="Industrialist" name="award" value="Industrialist" checked />
+                <label for="Industrialist">Industrialist</label>
+                <input type="checkbox" id="Investor" name="award" value="Investor" checked />
+                <label for="Investor">Investor</label>
+                <input type="checkbox" id="Landlord" name="award" value="Landlord" checked />
+                <label for="Landlord">Landlord</label>
+                <input type="checkbox" id="Landscaper" name="award" value="Landscaper" checked />
+                <label for="Landscaper">Landscaper</label>
+                <input type="checkbox" id="Magnate" name="award" value="Magnate" checked />
+                <label for="Magnate">Magnate</label>
+                <input type="checkbox" id="Manufacturer" name="award" value="Manufacturer" checked />
+                <label for="Manufacturer">Manufacturer</label>
+                <input type="checkbox" id="Metropolist" name="award" value="Metropolist" checked />
+                <label for="Metropolist">Metropolist</label>
+                <input type="checkbox" id="Miner" name="award" value="Miner" checked />
+                <label for="Miner">Miner</label>
+                <input type="checkbox" id="Mogul" name="award" value="Mogul" checked />
+                <label for="Mogul">Mogul</label>
+                <input type="checkbox" id="Politician" name="award" value="Politician" checked />
+                <label for="Politician">Politician</label>
+                <input type="checkbox" id="Promoter" name="award" value="Promoter" checked />
+                <label for="Promoter">Promoter</label>
+                <input type="checkbox" id="Scientist" name="award" value="Scientist" checked />
+                <label for="Scientist">Scientist</label>
+                <input type="checkbox" id="Space Baron" name="award" value="Space Baron" checked />
+                <label for="Space Baron">Space Baron</label>
+                <input type="checkbox" id="Suburbian" name="award" value="Suburbian" checked />
+                <label for="Suburbian">Suburbian</label>
+                <input type="checkbox" id="Thermalist" name="award" value="Thermalist" checked />
+                <label for="Thermalist">Thermalist</label>
+                <input type="checkbox" id="Traveller" name="award" value="Traveller" checked />
+                <label for="Traveller">Traveller</label>
+                <input type="checkbox" id="Visionary" name="award" value="Visionary" checked />
+                <label for="Visionary">Visionary</label>
+                <input type="checkbox" id="Zoologist" name="award" value="Zoologist" checked />
+                <label for="Zoologist">Zoologist</label>
             </form>
         </div>
-        <br />
-        <button type="button" onclick="pick()">Pick!</button>
-        <br />
-        <div id="results" style="display: none;">
-            <h2>Results:</h2>
-            <table>
-                <colgroup>
-                    <col id="picked_map_col" />
-                    <col id="picked_components_col" />
-                    <col id="picked_colonies_col" />
-                </colgroup>
-                <tr>
-                    <th>Map</th>
-                    <th>Expansions</th>
-                    <th id="picked_colonies_th">Colonies</th>
-                </tr>
-                <tr>
-                    <td id="picked_map_td"></td>
-                    <td id="picked_components_td">
-                        <ul id="picked_components"></ul>
-                    </td>
-                    <td id="picked_colonies_td">
-                        <ul id="picked_colonies"></ul>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div>
-            <p>See the code and contribute <a href="https://github.com/Grant094/terraforming-mars-picker">here.</a></p>
-        </div>
-    </body>
+    </div>
+    <br />
+    <button type="button" onclick="pick()">Pick!</button>
+    <br />
+    <div id="results" style="display: none;">
+        <h2>Results:</h2>
+        <table>
+            <colgroup>
+                <col id="picked_map_col" />
+                <col id="picked_components_col" />
+                <col id="picked_colonies_col" />
+                <col id="picked_milestones_col" />
+                <col id="picked_awards_col" />
+            </colgroup>
+            <tr>
+                <th>Map</th>
+                <th>Expansions</th>
+                <th id="picked_colonies_th">Colonies</th>
+                <th id="picked_milestones_th">Milestones</th>
+                <th id="picked_awards_th">Awards</th>
+            </tr>
+            <tr>
+                <td id="picked_map_td"></td>
+                <td id="picked_components_td">
+                    <ul id="picked_components"></ul>
+                </td>
+                <td id="picked_colonies_td">
+                    <ul id="picked_colonies"></ul>
+                </td>
+                <td id="picked_milestones_td">
+                    <ul id="picked_milestones"></ul>
+                </td>
+                <td id="picked_awards_td">
+                    <ul id="picked_awards"></ul>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <p>See the code and contribute <a href="https://github.com/Grant094/terraforming-mars-picker">here.</a></p>
+    </div>
+</body>
+
 </html>
