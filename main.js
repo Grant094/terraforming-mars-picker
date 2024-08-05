@@ -177,15 +177,10 @@ function pick() {
     }
     
     let mapsChecked = document.querySelectorAll('input[name="map"]:checked');
-    let mapPicked = mapsChecked[Math.floor(Math.random() * mapsChecked.length)]; // #TODO change to use pickItem()
+    const mapPicked = pickItem(mapsChecked);
     document.getElementById('picked_map_td').innerHTML = mapPicked.value;
 
-    let pickedColoniesCol = document.getElementById('picked_colonies_col'); // #TODO align with how milestones and awards are made visible
-    if (pickedColoniesElement.children.length > 0) {
-        pickedColoniesCol.style.visibility = 'visible';
-    } else {
-        pickedColoniesCol.style.visibility = 'collapse';
-    }
+    document.getElementById('picked_colonies_col').style.visibility = (pickedColoniesElement.children.length > 0) ? 'visible' : 'collapse';
 
     document.getElementById('picked_milestones_col').style.visibility = (pickedMilestonesElement.children.length > 0) ? 'visible' : 'collapse';
 
