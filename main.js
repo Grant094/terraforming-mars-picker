@@ -205,6 +205,8 @@ function invertCheckedComponents() {
     // below statements needed since toggling checkbox this way does not trigger inline onchange event
     showOrHideDiv('colonies_div', 'Colonies');
     showOrHideDiv('awards_and_milestones_div', 'Awards & Milestones');
+
+    alignMinAndMax();
 };
 
 function alignMinAndMax() {
