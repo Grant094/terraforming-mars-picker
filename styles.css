@@ -33,7 +33,6 @@ div {
 form:not(#players_and_components_form) {
     display: flex;
     flex-flow: row wrap;
-    /* align-content: flex-start; */
 }
 
 div.input-label-combo {
