@@ -32,6 +32,7 @@ label {
 
 div {
     flex-flow: row wrap;
+    width: 100%;
 }
 
 /* Remove Arrows/Spinners */
