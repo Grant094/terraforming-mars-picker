@@ -1,5 +1,6 @@
 table, th, td {
     border: 1px solid;
+    font-size: x-large;
 }
 
 td {
@@ -23,6 +24,10 @@ li {
 
 input {
     text-align: center;
+}
+
+label {
+    font-size: xx-large;
 }
 
 div {
