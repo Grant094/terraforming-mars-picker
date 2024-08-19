@@ -1,5 +1,6 @@
 table, th, td {
     border: 1px solid;
+    font-size: x-large;
 }
 
 td {
@@ -25,8 +26,13 @@ input {
     text-align: center;
 }
 
+label {
+    font-size: xx-large;
+}
+
 div {
     flex-flow: row wrap;
+    width: 100%;
 }
 
 /* Remove Arrows/Spinners */
