@@ -30,6 +30,16 @@ div {
     width: 100%;
 }
 
+form:not(#players_and_components_form) {
+    display: flex;
+    flex-flow: row wrap;
+    /* align-content: flex-start; */
+}
+
+div.input-label-combo {
+    width: 20%;
+}
+
 /* Remove Arrows/Spinners */
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
