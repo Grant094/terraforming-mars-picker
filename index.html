@@ -141,8 +141,11 @@
     </div>
     <div id="awards_and_milestones_div">
         <div id="milestones_div">
-            <h3>Milestones:</h3>
-            <form>
+            <div id="milestones_collapse_div" class="collapse_div">
+                <button type="button" id="milestones_collapse_button" class="collapsible minus_button" onclick="toggleFormVisibility('milestones')">-</button>
+                <h3>Milestones:</h3>
+            </div>
+            <form id="milestones_form">
                 <div class="input-label-combo">
                     <input type="checkbox" id="Briber" name="milestone" value="Briber" checked />
                     <label for="Briber">Briber</label>
@@ -286,8 +289,11 @@
             </form>
         </div>
         <div id="awards_div">
-            <h3>Awards:</h3>
-            <form>
+            <div id="awards_collapse_div" class="collapse_div">
+                <button type="button" id="awards_collapse_button" class="collapsible minus_button" onclick="toggleFormVisibility('awards')">-</button>
+                <h3>Awards:</h3>
+            </div>
+            <form id="awards_form">
                 <div class="input-label-combo">
                     <input type="checkbox" id="Administrator" name="award" value="Administrator" checked />
                     <label for="Administrator">Administrator</label>
