@@ -254,3 +254,18 @@ function decrement(id) {
     }
     alignMinAndMax();
 };
+
+function toggleFormVisibility(prefix) {
+    const parentDiv = document.getElementById((prefix + "_div"));
+    const form = document.getElementById(prefix + "_form");
+
+    // toggle whether form is hidden or visible
+    if (form.style.display === "flex") {
+        form.style.display = "none";
+    } else {
+        form.style.display = "flex";
+    }
+
+    // change plus or minus sign in parent div to the other
+    
+}

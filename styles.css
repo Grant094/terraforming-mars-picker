@@ -39,7 +39,7 @@ div.input-label-combo {
     width: 20%;
 }
 
-div.collapsible_heading {
+div.collapse_div {
     display: flex;
     flex-flow: row nowrap;
     width: 100%;
