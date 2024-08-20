@@ -88,8 +88,11 @@
         </form>
     </div>
     <div id="colonies_div">
-        <h3>Colonies:</h3>
-        <form>
+        <div id="colonies_collapse_div" class="collapse_div">
+            <button type="button" id="colonies_collapse_button" class="collapsible minus_button" onclick="toggleFormVisibility('colonies')">-</button>
+            <h3>Colonies:</h3>
+        </div>
+        <form id="colonies_form">
             <div class="input-label-combo">
                 <input type="checkbox" id="Callisto" name="colony" value="Callisto" checked />
                 <label for="Callisto">Callisto</label>
