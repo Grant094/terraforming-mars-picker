@@ -35,7 +35,7 @@ form:not(#players_and_components_form) {
     flex-flow: row wrap;
 }
 
-div.input-label-combo {
+div.input_label_combo {
     width: 20%;
 }
 
