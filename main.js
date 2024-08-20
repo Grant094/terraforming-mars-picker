@@ -46,6 +46,7 @@ const AWARDS = [
     "Collector",
     "Constructor",
     "Contractor",
+    "Contractor",
     "Cultivator",
     "Electrician",
     "Estate Dealer",
