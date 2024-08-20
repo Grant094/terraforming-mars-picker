@@ -39,6 +39,22 @@ div.input-label-combo {
     width: 20%;
 }
 
+div.collapsible_heading {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+}
+
+h3 {
+    width: 20%;
+}
+
+button.collapsible {
+    height: 20px;
+    align-self: center;
+    margin-right: 5px;
+}
+
 /* Remove Arrows/Spinners */
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
