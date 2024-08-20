@@ -48,8 +48,11 @@
     </form>
     <br />
     <div id="maps_div">
-        <h3>Maps:</h3>
-        <form>
+        <div id="maps_collapse_div" class="collapse_div">
+            <button type="button" id="maps_collapse_button" class="collapsible minus_button" onclick="toggleFormVisibility('maps')">-</button>
+            <h3>Maps:</h3>
+        </div>
+        <form id="maps_form">
             <div class="input-label-combo">
                 <input type="checkbox" id="Tharsis" name="map" class="Tharsis" value="Tharsis" checked />
                 <label for="Tharsis">Tharsis</label>
@@ -85,8 +88,11 @@
         </form>
     </div>
     <div id="colonies_div">
-        <h3>Colonies:</h3>
-        <form>
+        <div id="colonies_collapse_div" class="collapse_div">
+            <button type="button" id="colonies_collapse_button" class="collapsible minus_button" onclick="toggleFormVisibility('colonies')">-</button>
+            <h3>Colonies:</h3>
+        </div>
+        <form id="colonies_form">
             <div class="input-label-combo">
                 <input type="checkbox" id="Callisto" name="colony" value="Callisto" checked />
                 <label for="Callisto">Callisto</label>
@@ -135,8 +141,11 @@
     </div>
     <div id="awards_and_milestones_div">
         <div id="milestones_div">
-            <h3>Milestones:</h3>
-            <form>
+            <div id="milestones_collapse_div" class="collapse_div">
+                <button type="button" id="milestones_collapse_button" class="collapsible minus_button" onclick="toggleFormVisibility('milestones')">-</button>
+                <h3>Milestones:</h3>
+            </div>
+            <form id="milestones_form">
                 <div class="input-label-combo">
                     <input type="checkbox" id="Briber" name="milestone" value="Briber" checked />
                     <label for="Briber">Briber</label>
@@ -280,8 +289,11 @@
             </form>
         </div>
         <div id="awards_div">
-            <h3>Awards:</h3>
-            <form>
+            <div id="awards_collapse_div" class="collapse_div">
+                <button type="button" id="awards_collapse_button" class="collapsible minus_button" onclick="toggleFormVisibility('awards')">-</button>
+                <h3>Awards:</h3>
+            </div>
+            <form id="awards_form">
                 <div class="input-label-combo">
                     <input type="checkbox" id="Administrator" name="award" value="Administrator" checked />
                     <label for="Administrator">Administrator</label>
