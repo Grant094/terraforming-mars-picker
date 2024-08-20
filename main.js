@@ -4,7 +4,7 @@ const MILESTONES = [
     "Coastguard",
     "Diversifier",
     "Ecologist",
-    "Enegizer",
+    "Energizer",
     "Engineer",
     "Farmer",
     "Forester",
