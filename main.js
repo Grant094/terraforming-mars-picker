@@ -92,6 +92,13 @@ function pick() {
         5: 7
     };
 
+    //#region collapse all forms
+    collForm("maps");
+    collForm("colonies");
+    collForm("milestones");
+    collForm("awards");
+    //#endregion
+
     //#region clear out previously picked items
     let pickedComponentsElement = document.getElementById("picked_components");
     pickedComponentsElement.innerHTML = '';
@@ -115,13 +122,13 @@ function pick() {
     while (componentsPicked.size < numComponentsToUse) {
         componentsPicked.add(pickItem(componentsChecked));
     }
-    
+
     // clear out message about the base game if it is there
     let baseGameOnlyElement = document.getElementById('base_game_only');
     if (baseGameOnlyElement) {
         componentsDiv.removeChild(baseGameOnlyElement);
     }
-    
+
     if (componentsPicked.size === 0) {
         document.getElementById('picked_components').style.display = 'none';
         let child = document.createElement('p');
@@ -132,7 +139,7 @@ function pick() {
         document.getElementById('picked_components').style.display = 'inline';
         listPickedItems(componentsPicked, pickedComponentsElement);
     }
-    
+
     // if the Colonies component was picked, pick which colonies to play with
     for (const component of componentsPicked) {
         if (component.value === "Colonies") {
@@ -140,11 +147,11 @@ function pick() {
             let numColoniesToPick = numOfColoniesByPlayerCount[players];
             let coloniesChecked = document.querySelectorAll('input[name="colony"]:checked');
             let coloniesPicked = new Set();
-            
+
             while (coloniesPicked.size < numColoniesToPick) {
                 coloniesPicked.add(pickItem(coloniesChecked));
             }
-    
+
             listPickedItems(coloniesPicked, pickedColoniesElement);
         } else if (component.value === "Awards & Milestones") {
             let milestonesChecked = document.querySelectorAll('input[name="milestone"]:checked');
@@ -175,7 +182,7 @@ function pick() {
             listPickedItems(awardsPicked, pickedAwardsElement);
         }
     }
-    
+
     let mapsChecked = document.querySelectorAll('input[name="map"]:checked');
     const mapPicked = pickItem(mapsChecked);
     document.getElementById('picked_map_td').innerHTML = mapPicked.value;
@@ -185,7 +192,7 @@ function pick() {
     document.getElementById('picked_milestones_col').style.visibility = (pickedMilestonesElement.children.length > 0) ? 'visible' : 'collapse';
 
     document.getElementById('picked_awards_col').style.visibility = (pickedAwardsElement.children.length > 0) ? 'visible' : 'collapse';
-    
+
     resultsDiv.style.display = 'inline';
 };
 
@@ -193,7 +200,7 @@ function showOrHideDiv(divId, checkboxId) {
     let div = document.getElementById(divId);
     let checkbox = document.getElementById(checkboxId);
 
-    div.style.display = (checkbox.checked ? 'inline': 'none');
+    div.style.display = (checkbox.checked ? 'inline' : 'none');
 }
 
 function invertCheckedComponents() {
@@ -257,17 +264,30 @@ function decrement(id) {
 
 function toggleFormVisibility(prefix) {
     const form = document.getElementById(prefix + "_form");
-    const button = document.getElementById(prefix + "_collapse_button");
 
     if (form.style.display === "none") {
-        form.style.display = "flex";
-        button.classList.remove("plus_button");
-        button.classList.add("minus_button");
-        button.innerHTML = "-";
+        showForm(prefix);
     } else {
-        form.style.display = "none";
-        button.classList.remove("minus_button");
-        button.classList.add("plus_button");
-        button.innerHTML = "+";
+        collForm(prefix);
     }
+}
+
+function collForm(prefix) {
+    const form = document.getElementById(prefix + "_form");
+    const button = document.getElementById(prefix + "_collapse_button");
+
+    form.style.display = "none";
+    button.classList.remove("minus_button");
+    button.classList.add("plus_button");
+    button.innerHTML = "+";
+}
+
+function showForm(prefix) {
+    const form = document.getElementById(prefix + "_form");
+    const button = document.getElementById(prefix + "_collapse_button");
+
+    form.style.display = "flex";
+    button.classList.remove("plus_button");
+    button.classList.add("minus_button");
+    button.innerHTML = "-";
 }
