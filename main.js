@@ -259,15 +259,15 @@ function toggleFormVisibility(prefix) {
     const form = document.getElementById(prefix + "_form");
     const button = document.getElementById(prefix + "_collapse_button");
 
-    if (form.style.display === "flex") {
-        form.style.display = "none";
-        button.classList.remove("minus_button");
-        button.classList.add("plus_button");
-        button.innerHTML = "+";
-    } else {
+    if (form.style.display === "none") {
         form.style.display = "flex";
         button.classList.remove("plus_button");
         button.classList.add("minus_button");
         button.innerHTML = "-";
+    } else {
+        form.style.display = "none";
+        button.classList.remove("minus_button");
+        button.classList.add("plus_button");
+        button.innerHTML = "+";
     }
 }
