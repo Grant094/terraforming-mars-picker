@@ -256,16 +256,18 @@ function decrement(id) {
 };
 
 function toggleFormVisibility(prefix) {
-    const parentDiv = document.getElementById((prefix + "_div"));
     const form = document.getElementById(prefix + "_form");
+    const button = document.getElementById(prefix + "_collapse_button");
 
-    // toggle whether form is hidden or visible
     if (form.style.display === "flex") {
         form.style.display = "none";
+        button.classList.remove("minus_button");
+        button.classList.add("plus_button");
+        button.innerHTML = "+";
     } else {
         form.style.display = "flex";
+        button.classList.remove("plus_button");
+        button.classList.add("minus_button");
+        button.innerHTML = "-";
     }
-
-    // change plus or minus sign in parent div to the other
-    
 }
