@@ -83,12 +83,12 @@ const VOLCANIC_MAP_IDS = [
     "amazonis_planitia",
 ];
 
-const MILESTONES_AND_AWARDS_THAT_REQUIRE_TURMOIL = [
+const MILESTONES_AND_AWARDS_THAT_REQUIRE_TURMOIL_IDS = [
     "Lobbyist",
     "Politician",
 ];
 
-const MILESTONES_AND_AWARDS_THAT_REQUIRE_COLONIES = [
+const MILESTONES_AND_AWARDS_THAT_REQUIRE_COLONIES_IDS = [
     "Constructor",
 ];
 
@@ -158,6 +158,8 @@ function pick() {
         listPickedItems(componentsPicked, pickedComponentsElement);
     }
 
+    console.log(`Picked Turmoil?: ${componentsPicked.has(document.getElementById("turmoil"))}`);
+
     let mapsChecked = document.querySelectorAll('input[name="map"]:checked');
     const mapPicked = pickItem(mapsChecked);
 
@@ -182,7 +184,14 @@ function pick() {
 
             while (milestonesPicked.size < MILESTONES_OR_AWARDS_TO_PICK) {
                 const pickedMilestone = pickItem(milestonesChecked);
-                if (!(VOLCANIC_MAP_IDS.includes(mapPicked.id)) && pickedMilestone.id === "Geologist") {
+                console.log(pickedMilestone.id);
+                if (
+                    (!(VOLCANIC_MAP_IDS.includes(mapPicked.id)) && pickedMilestone.id === "Geologist") ||
+                    (
+                        pickedMilestone.id === "Lobbyist" &&
+                        !(componentsPicked.has(document.getElementById("turmoil")))
+                    )
+                ) {
                     continue;
                 } else {
                     milestonesPicked.add(pickedMilestone);
