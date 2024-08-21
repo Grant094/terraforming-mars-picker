@@ -172,7 +172,12 @@ function pick() {
             let awardsPicked = new Set();
 
             while (milestonesPicked.size < MILESTONES_OR_AWARDS_TO_PICK) {
-                milestonesPicked.add(pickItem(milestonesChecked));
+                const pickedMilestone = pickItem(milestonesChecked);
+                if (!(VOLCANIC_MAP_IDS.includes(mapPicked.id)) && pickedMilestone.id === "Geologist") {
+                    continue;
+                } else {
+                    milestonesPicked.add(pickedMilestone);
+                }
             }
 
             while (awardsPicked.size < MILESTONES_OR_AWARDS_TO_PICK) {
