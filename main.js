@@ -83,6 +83,15 @@ const VOLCANIC_MAP_IDS = [
     "amazonis_planitia",
 ];
 
+const MILESTONES_AND_AWARDS_THAT_REQUIRE_TURMOIL = [
+    "Lobbyist",
+    "Politician",
+];
+
+const MILESTONES_AND_AWARDS_THAT_REQUIRE_COLONIES = [
+    "Constructor",
+];
+
 const MILESTONES_OR_AWARDS_TO_PICK = 5;
 
 function pick() {
