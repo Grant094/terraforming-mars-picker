@@ -199,7 +199,16 @@ function pick() {
             }
 
             while (awardsPicked.size < MILESTONES_OR_AWARDS_TO_PICK) {
-                awardsPicked.add(pickItem(awardsChecked));
+                const pickedAward = pickItem(awardsChecked);
+                console.log(pickedAward.id);
+                if (
+                    pickedAward.id === "Politician" &&
+                    !(componentsPicked.has(document.getElementById("turmoil")))
+                ) {
+                    continue;
+                } else {
+                    awardsPicked.add(pickedAward);
+                }
             }
 
             if (pickedComponentsElement.innerHTML.includes("Venus")) {
