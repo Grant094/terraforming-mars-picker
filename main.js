@@ -75,6 +75,14 @@ const AWARDS = [
     "Zoologist",
 ];
 
+const VOLCANIC_MAP_IDS = [
+    "tharsis",
+    "elysium",
+    "terra_cimmeria",
+    "vastitas_borealis",
+    "amazonis_planitia",
+];
+
 const MILESTONES_OR_AWARDS_TO_PICK = 5;
 
 function pick() {
@@ -141,6 +149,9 @@ function pick() {
         listPickedItems(componentsPicked, pickedComponentsElement);
     }
 
+    let mapsChecked = document.querySelectorAll('input[name="map"]:checked');
+    const mapPicked = pickItem(mapsChecked);
+
     // if the Colonies component was picked, pick which colonies to play with
     for (const component of componentsPicked) {
         if (component.value === "Colonies") {
@@ -161,7 +172,12 @@ function pick() {
             let awardsPicked = new Set();
 
             while (milestonesPicked.size < MILESTONES_OR_AWARDS_TO_PICK) {
-                milestonesPicked.add(pickItem(milestonesChecked));
+                const pickedMilestone = pickItem(milestonesChecked);
+                if (!(VOLCANIC_MAP_IDS.includes(mapPicked.id)) && pickedMilestone.id === "Geologist") {
+                    continue;
+                } else {
+                    milestonesPicked.add(pickedMilestone);
+                }
             }
 
             while (awardsPicked.size < MILESTONES_OR_AWARDS_TO_PICK) {
@@ -184,8 +200,6 @@ function pick() {
         }
     }
 
-    let mapsChecked = document.querySelectorAll('input[name="map"]:checked');
-    const mapPicked = pickItem(mapsChecked);
     document.getElementById('picked_map_td').innerHTML = mapPicked.value;
 
     document.getElementById('picked_colonies_col').style.visibility = (pickedColoniesElement.children.length > 0) ? 'visible' : 'collapse';
