@@ -202,8 +202,14 @@ function pick() {
                 const pickedAward = pickItem(awardsChecked);
                 console.log(pickedAward.id);
                 if (
-                    pickedAward.id === "Politician" &&
-                    !(componentsPicked.has(document.getElementById("turmoil")))
+                    (
+                        pickedAward.id === "Politician" &&
+                        !(componentsPicked.has(document.getElementById("turmoil")))
+                    ) ||
+                    (
+                        pickedAward.id === "Constructor" &&
+                        !(componentsPicked.has(document.getElementById("colonies")))
+                    )
                 ) {
                     continue;
                 } else {
